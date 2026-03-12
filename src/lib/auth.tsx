@@ -26,19 +26,22 @@ export function useAuth() {
 
 // Mock auth for development (no Clerk key required)
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null)
+  const [user, setUser] = useState<User | null>(() => {
+    try {
+      const saved = localStorage.getItem('ol_mock_user')
+      return saved ? JSON.parse(saved) : null
+    } catch { return null }
+  })
 
   async function signIn(email: string, _password: string) {
-    // Mock sign-in
-    setUser({
-      id: 'mock-user-1',
-      name: email.split('@')[0],
-      email,
-    })
+    const u = { id: 'mock-user-1', name: email.split('@')[0], email }
+    setUser(u)
+    localStorage.setItem('ol_mock_user', JSON.stringify(u))
   }
 
   function signOut() {
     setUser(null)
+    localStorage.removeItem('ol_mock_user')
   }
 
   return (
