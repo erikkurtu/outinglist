@@ -6,6 +6,8 @@ import { Button } from '@/components/Button'
 import { fetchEvent, getLikes, toggleLike } from '@/lib/api'
 import { formatDate, formatPrice } from '@/lib/utils'
 import { useAuth } from '@/lib/auth'
+import { AddToListModal } from '@/components/AddToListModal'
+import { useToast } from '@/components/Toast'
 import type { Event } from '@/components/EventCard'
 
 // Gradient palette per category color
@@ -24,6 +26,8 @@ export function EventDetail() {
   const [liked, setLiked] = useState(false)
   const [likeLoading, setLikeLoading] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [showAddToList, setShowAddToList] = useState(false)
+  const { toast } = useToast()
 
   useEffect(() => {
     if (!id) return
@@ -54,11 +58,16 @@ export function EventDetail() {
     }
   }
 
-  function handleShare() {
+  async function handleShare() {
     const shareUrl = `${window.location.origin}/share/events/${id}`
-    navigator.clipboard.writeText(shareUrl)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+    try {
+      await navigator.clipboard.writeText(shareUrl)
+      toast('Link copied to clipboard!', 'success')
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {
+      toast('Failed to copy link', 'error')
+    }
   }
 
   if (loading) return (
@@ -234,6 +243,15 @@ export function EventDetail() {
             <span>{copied ? 'Link copied!' : 'Share'}</span>
           </button>
 
+          {/* Add to List button */}
+          <button
+            onClick={() => setShowAddToList(true)}
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all border bg-white text-[#64748B] border-[#E8E8E4] hover:border-[#FF6B35] hover:text-[#FF6B35]"
+          >
+            <span>📋</span>
+            <span>Add to List</span>
+          </button>
+
           {!user && (
             <Link to="/sign-in" className="text-sm text-[#94A3B8] hover:text-[#FF6B35] transition-colors">
               Sign in to like events
@@ -241,6 +259,11 @@ export function EventDetail() {
           )}
         </div>
       </div>
+
+      {/* Add to List Modal */}
+      {showAddToList && id && (
+        <AddToListModal eventId={id} onClose={() => setShowAddToList(false)} />
+      )}
     </Layout>
   )
 }

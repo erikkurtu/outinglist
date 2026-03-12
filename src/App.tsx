@@ -7,6 +7,8 @@ import { Browse } from '@/pages/Browse'
 import { EventDetail } from '@/pages/EventDetail'
 import { CreateEvent } from '@/pages/CreateEvent'
 import { Lists } from '@/pages/Lists'
+import { ListDetail } from '@/pages/ListDetail'
+import { CreateList } from '@/pages/CreateList'
 import { Profile } from '@/pages/Profile'
 import { SignIn } from '@/pages/SignIn'
 import { SignUp } from '@/pages/SignUp'
@@ -23,7 +25,8 @@ function App() {
             <Route path="/events/new" element={<CreateEvent />} />
             <Route path="/events/:id" element={<EventDetail />} />
             <Route path="/lists" element={<Lists />} />
-            <Route path="/lists/:id" element={<Lists />} />
+            <Route path="/lists/new" element={<CreateList />} />
+            <Route path="/lists/:id" element={<ListDetail />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/sign-up" element={<SignUp />} />

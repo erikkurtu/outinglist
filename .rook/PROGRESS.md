@@ -1,5 +1,80 @@
 # OutingList Build Progress
 
+## Stage 3 — Lists, Likes, Sharing, Profile ✅
+_Completed: 2026-03-12_
+
+### What Was Built
+
+**API Enhancements**
+- `POST /api/lists` — create list (title, description, is_public, cover_image_url)
+- `GET /api/lists?user_id=` — all user's lists with event_count, like_count, preview_events
+- `GET /api/lists/:id?user_id=` — list detail with events, liked status, owner profile
+- `PUT /api/lists/:id` — update list (owner only)
+- `DELETE /api/lists/:id` — delete list (owner only)
+- `POST /api/lists/:id/events` — add event to list (owner only)
+- `DELETE /api/lists/:id/events/:eventId` — remove event from list (owner only)
+- `GET /api/likes/check?user_id=&target_type=&target_id=` — check like status
+- `GET /api/users/:id/profile` — profile with stats, public_lists, liked_events, my_events
+- `PUT /api/users/:id/profile` — update display_name, bio
+- `GET /share/lists/:id` — OG meta middleware for list sharing (og:title, og:description, og:image, Twitter card)
+
+**Lists Pages**
+- `My Lists (/lists)` — grid of user's lists separated into Public/Private sections, event count + like count chips, 4-image preview collage
+- `Create List (/lists/new)` — title, description, cover image URL with live preview, public/private toggle, validation
+- `List Detail (/lists/:id)` — cover image/gradient, description, curator badge, Like button (optimistic), Share button (copies /share/lists/:id), Edit button (owner), event grid with remove button (owner), "Add more events" link
+
+**Likes**
+- Like/unlike events: heart button on EventCards and detail page, optimistic UI update, persisted to DB
+- Like/unlike lists: same pattern on ListDetail page — button turns orange, count updates, persists
+- Profile Likes tab shows all liked events
+
+**Share Buttons**
+- Events: Share button on EventDetail copies `/share/events/:id` with toast confirmation
+- Lists: Share button on ListDetail copies `/share/lists/:id` with toast confirmation
+- OG meta for lists returns proper og: + Twitter card tags
+
+**AddToListModal**
+- Floating modal on EventCard (+ button appears on hover) and EventDetail ("Add to List" button)
+- Shows user's lists with event count
+- Add button marks as "✓ Added" immediately (optimistic)
+- "Create New List" button routes to /lists/new
+
+**Profile Page (full rebuild)**
+- Avatar (initial letter in coral circle)
+- Edit profile inline (display_name, bio) — saves to API
+- Stats row: My Events / My Lists / My Likes (counts clickable to tab)
+- Tab switcher: My Events / My Lists (public only) / My Likes
+- Each tab has proper empty state with CTA
+
+**Curator Badge**
+- Shows on ListDetail "by Curator" section if `user_profiles.is_curator = 1`
+- Shows on Profile header next to display name if curator
+
+**Git**
+- Committed and pushed: `feat(stage-3): lists, likes, sharing, profiles`
+- GitHub: https://github.com/erikkurtu/outinglist
+
+### Screenshots Verified
+- My Lists page: list card with 4-image grid, Public badge, event count, like count ✅
+- Create List form: all fields, public/private toggle ✅
+- List created → redirected to ListDetail with toast ✅
+- List Detail with 4 events, Like/Share/Edit buttons ✅
+- Like button toggled (orange "1 Liked" state) ✅
+- OG meta for lists: curl confirms og:title, og:description, twitter:card ✅
+- Event Detail: "1 Liked" (orange), Share button, Add to List button ✅
+- Add to List modal: shows list with "Best Atlanta Weekend Picks - 4 events" ✅
+- Profile: avatar, stats (0 events, 1 list, 6 likes), 3 tabs ✅
+- Profile Likes tab: 5 liked events with orange heart badges ✅
+- Profile Lists tab: "Best Atlanta Weekend Picks" card ✅
+
+### Known Gaps (for Stage 4)
+- Curator badge only shows as "Curator" since display_name defaults from mock auth
+- No event date bug: some events show "Invalid Date" (seeding issue, not Stage 3 bug)
+- Profile only shows public lists (by design in spec)
+
+---
+
+
 ## Stage 2 — Event Core ✅
 _Completed: 2026-03-11_
 
