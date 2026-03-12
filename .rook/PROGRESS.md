@@ -241,3 +241,48 @@ _Completed: 2026-03-11_
 
 **Server:**
 - Added static file serving to Hono server — both API + frontend served from port 3001
+
+---
+
+## Stage 4 — Scrapers ✅
+_Completed: 2026-03-12_
+
+### What Was Built
+
+**Scraper Framework (`scrapers/`)**
+- `utils.js`: shared utilities — DB helpers (upsertEvent, logScraperRun), category mapping (CATEGORY_MAP for all 15 categories), price parser, fetchWithRetry with timeout, sleep helper
+- UPSERT strategy: inserts by `scraped_id`, updates mutable fields on conflict — fully idempotent
+
+**Scrapers Built**
+- `eventbrite.js`: Scrapes https://www.eventbrite.com/d/ga--atlanta/events/ via LD+JSON structured data. 5 pages × ~28 events. → **36 new events**
+- `allevents.js`: Scrapes https://allevents.in/atlanta via per-page LD+JSON blocks. 4 pages × 56 events. → **57 new events**
+- `meetup.js`: Scrapes https://www.meetup.com/find/?location=Atlanta%2C+GA via 7 category URL permutations. → **23 new events**
+
+**Scraper Runner**
+- `run-all.js`: Runs all 3 scrapers in sequence, prints per-platform summary table, queries DB for totals, exits with code 0 on success
+- Total run time: ~38 seconds
+
+**Sources Research**
+- `SOURCES.md`: Documents all sources tried (Eventbrite, AllEvents, Meetup, do404, Atlanta Magazine, Creative Loafing, BeltLine) with status, approach, and verdict for each
+
+**Launchd Plist**
+- `com.outinglist.scrapers.plist`: Runs every 6 hours via launchd
+- Installed to `~/Library/LaunchAgents/`
+- Logs to `~/Library/Logs/outinglist-scrapers.log`
+
+**App Changes**
+- `EventDetail.tsx`: SOURCE badge now shows for `scraped` events (not just `external`) — displays platform name in violet
+
+### Results
+- 116 new scraped events inserted into DB
+- 171 total events (55 seeded + 116 scraped)
+- Breakdown: Eventbrite 36, AllEvents 57, Meetup 23
+
+### Git
+- Committed and pushed: `feat(stage-4): scrapers — eventbrite, allevents.in, meetup.com`
+- Commit: fab22c0
+
+### Screenshots Verified
+- Browse page: 171 events showing ("What's on."), 7 pages of results ✅
+- Event detail (allevents): DANCEHALL DELIGHT with SOURCE badge "Allevents" ✅
+- Event detail (meetup): Simply Connect Atlanta with SOURCE badge "Meetup", full description ✅

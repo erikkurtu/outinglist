@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Layout } from '@/components/Layout'
-import { EventCard } from '@/components/EventCard'
 import type { Event } from '@/components/EventCard'
 import { CATEGORY_ICONS, CATEGORY_COLORS } from '@/components/icons/CategoryIcons'
 import { fetchEvents } from '@/lib/api'
@@ -82,9 +81,9 @@ export function Home() {
           </div>
         </div>
 
-        {/* Category strip at bottom of hero */}
+        {/* Category strip at bottom of hero — icons + labels */}
         <div className="relative border-t border-white/10">
-          <div className="max-w-6xl mx-auto px-6 py-4 flex gap-6 overflow-x-auto scrollbar-none">
+          <div className="max-w-6xl mx-auto px-6 py-4 flex gap-5 overflow-x-auto scrollbar-none">
             {FEATURED_CATEGORIES.map(cat => {
               const Icon = CATEGORY_ICONS[cat.slug]
               const color = CATEGORY_COLORS[cat.slug]
@@ -92,10 +91,10 @@ export function Home() {
                 <Link
                   key={cat.slug}
                   to={`/browse?category=${cat.slug}`}
-                  className="flex items-center gap-2 text-white/40 hover:text-white transition-colors flex-shrink-0 group"
+                  className="flex items-center gap-2 text-white/50 hover:text-white transition-colors flex-shrink-0 group"
                 >
-                  {Icon && <Icon size={18} color={color} className="opacity-60 group-hover:opacity-100 transition-opacity" />}
-                  <span className="text-sm font-medium tracking-wide whitespace-nowrap">{cat.label}</span>
+                  {Icon && <Icon size={16} color={color} className="opacity-70 group-hover:opacity-100 transition-opacity" />}
+                  <span className="text-xs font-semibold tracking-wide whitespace-nowrap">{cat.label}</span>
                 </Link>
               )
             })}
@@ -126,44 +125,65 @@ export function Home() {
           </div>
 
           {loading ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+            <div className="space-y-3">
               {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="animate-pulse">
-                  <div className="h-52 bg-[#DDD5C8] mb-3" />
-                  <div className="h-4 bg-[#DDD5C8] rounded mb-2 w-3/4" />
-                  <div className="h-3 bg-[#DDD5C8] rounded w-1/2" />
+                <div key={i} className="animate-pulse flex gap-4 py-3 border-b border-[#E2DDD6]">
+                  <div className="w-16 h-4 bg-[#DDD5C8] rounded" />
+                  <div className="flex-1 h-4 bg-[#DDD5C8] rounded" />
                 </div>
               ))}
             </div>
           ) : (
-            <>
-              {/* Editorial grid: featured large + smaller */}
-              {weekendEvents.length > 0 && (
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-6">
-                  {/* Large featured */}
-                  {weekendEvents[0] && (
-                    <div className="md:col-span-7">
-                      <EventCard event={weekendEvents[0]} featured className="h-full" />
-                    </div>
-                  )}
-                  {/* Right column — 2 smaller */}
-                  <div className="md:col-span-5 flex flex-col gap-6">
-                    {weekendEvents.slice(1, 3).map(ev => (
-                      <EventCard key={ev.id} event={ev} compact />
-                    ))}
-                  </div>
-                </div>
-              )}
+            <div className="space-y-0">
+              {weekendEvents.map(ev => {
+                const d = new Date(ev.start_at)
+                const day = d.toLocaleDateString('en-US', { weekday: 'short', timeZone: 'America/New_York' }).toUpperCase()
+                const month = d.toLocaleDateString('en-US', { month: 'short', timeZone: 'America/New_York' })
+                const date = d.getDate()
+                const time = d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' })
+                const primaryCat = ev.categories?.[0]
+                const catColor = primaryCat?.slug ? CATEGORY_COLORS[primaryCat.slug] : '#7C3AED'
+                const isFree = ev.is_free === 1
 
-              {/* Second row — 3 equal */}
-              {weekendEvents.length > 3 && (
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-                  {weekendEvents.slice(3, 6).map(ev => (
-                    <EventCard key={ev.id} event={ev} />
-                  ))}
-                </div>
-              )}
-            </>
+                return (
+                  <Link
+                    key={ev.id}
+                    to={`/events/${ev.id}`}
+                    className="group flex items-baseline gap-4 py-3.5 border-b border-[#E2DDD6] hover:bg-white/30 transition-colors px-2 -mx-2"
+                  >
+                    {/* Date */}
+                    <span className="text-xs font-bold tracking-wider text-[#8A8480] w-20 flex-shrink-0">
+                      {day} {month} {date}
+                    </span>
+
+                    {/* Time */}
+                    <span className="text-xs text-[#8A8480] w-14 flex-shrink-0 tabular-nums">
+                      {time}
+                    </span>
+
+                    {/* Category dot */}
+                    <span className="w-2 h-2 rounded-full flex-shrink-0 mt-1" style={{ backgroundColor: catColor }} />
+
+                    {/* Title */}
+                    <span className="flex-1 text-sm font-semibold text-[#1C1C1E] group-hover:text-[#7C3AED] transition-colors truncate">
+                      {ev.title}
+                    </span>
+
+                    {/* Venue */}
+                    {ev.location_name && (
+                      <span className="text-xs text-[#8A8480] flex-shrink-0 hidden md:inline truncate max-w-[180px]">
+                        {ev.location_name}
+                      </span>
+                    )}
+
+                    {/* Price */}
+                    <span className={`text-xs font-medium flex-shrink-0 ${isFree ? 'text-[#2A7A4A]' : 'text-[#1C1C1E]'}`}>
+                      {isFree ? 'Free' : ev.price_min ? `$${ev.price_min}` : ''}
+                    </span>
+                  </Link>
+                )
+              })}
+            </div>
           )}
         </div>
       </section>
@@ -214,10 +234,34 @@ export function Home() {
                 Browse all →
               </Link>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-              {moreEvents.map(ev => (
-                <EventCard key={ev.id} event={ev} compact />
-              ))}
+            <div className="space-y-0">
+              {moreEvents.map(ev => {
+                const d = new Date(ev.start_at)
+                const day = d.toLocaleDateString('en-US', { weekday: 'short', timeZone: 'America/New_York' }).toUpperCase()
+                const month = d.toLocaleDateString('en-US', { month: 'short', timeZone: 'America/New_York' })
+                const date = d.getDate()
+                const primaryCat = ev.categories?.[0]
+                const catColor = primaryCat?.slug ? CATEGORY_COLORS[primaryCat.slug] : '#7C3AED'
+
+                return (
+                  <Link
+                    key={ev.id}
+                    to={`/events/${ev.id}`}
+                    className="group flex items-baseline gap-4 py-3 border-b border-[#E2DDD6] hover:bg-white/30 transition-colors px-2 -mx-2"
+                  >
+                    <span className="text-xs font-bold tracking-wider text-[#8A8480] w-20 flex-shrink-0">
+                      {day} {month} {date}
+                    </span>
+                    <span className="w-2 h-2 rounded-full flex-shrink-0 mt-1" style={{ backgroundColor: catColor }} />
+                    <span className="flex-1 text-sm font-semibold text-[#1C1C1E] group-hover:text-[#7C3AED] transition-colors truncate">
+                      {ev.title}
+                    </span>
+                    {ev.location_name && (
+                      <span className="text-xs text-[#8A8480] flex-shrink-0 hidden sm:inline">{ev.location_name}</span>
+                    )}
+                  </Link>
+                )
+              })}
             </div>
           </div>
         </section>
