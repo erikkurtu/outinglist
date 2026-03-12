@@ -30,7 +30,7 @@ export function Nav() {
         {/* Wordmark */}
         <Link to="/" className="font-display font-bold text-lg tracking-tight text-white hover:text-[#F5E8D4] transition-colors">
           OutingList
-          <span className="ml-1.5 text-[10px] font-sans font-semibold tracking-widest text-[#C2582A] uppercase align-middle">
+          <span className="ml-1.5 text-[10px] font-sans font-semibold tracking-widest text-[#7C3AED] uppercase align-middle">
             ATL
           </span>
         </Link>
@@ -71,7 +71,7 @@ export function Nav() {
               <div className="relative">
                 <button
                   onClick={() => setMenuOpen(!menuOpen)}
-                  className="w-8 h-8 rounded-full bg-[#C2582A] flex items-center justify-center text-white text-sm font-bold font-sans"
+                  className="w-8 h-8 rounded-full bg-[#7C3AED] flex items-center justify-center text-white text-sm font-bold font-sans"
                 >
                   {user.name?.[0]?.toUpperCase() || 'U'}
                 </button>
@@ -94,7 +94,7 @@ export function Nav() {
                     <div className="border-t border-white/10 my-1" />
                     <button
                       onClick={() => { signOut(); setMenuOpen(false) }}
-                      className="w-full text-left px-4 py-2.5 text-sm text-[#C2582A] hover:bg-white/5 transition-colors"
+                      className="w-full text-left px-4 py-2.5 text-sm text-[#7C3AED] hover:bg-white/5 transition-colors"
                     >
                       Sign Out
                     </button>
@@ -112,7 +112,7 @@ export function Nav() {
               </button>
               <button
                 onClick={() => navigate('/sign-up')}
-                className="text-sm font-medium bg-[#C2582A] text-white px-4 py-2 hover:bg-[#A8461F] transition-colors"
+                className="text-sm font-medium bg-[#7C3AED] text-white px-4 py-2 hover:bg-[#6D28D9] transition-colors"
               >
                 Sign Up
               </button>

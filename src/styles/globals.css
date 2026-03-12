@@ -8,8 +8,8 @@
   --color-brand-dark: #1C1C1E;
   --color-brand-bg: #F5F0E8;
   --color-brand-surface: #FDFAF5;
-  --color-brand-primary: #C2582A;
-  --color-brand-primary-hover: #A8461F;
+  --color-brand-primary: #7C3AED;
+  --color-brand-primary-hover: #6D28D9;
   --color-brand-text: #1C1C1E;
   --color-brand-muted: #8A8480;
   --color-brand-border: #E2DDD6;
@@ -34,8 +34,8 @@
 
   /* Radii */
   --radius-card: 4px;
-  --radius-button: 4px;
-  --radius-badge: 2px;
+  --radius-button: 6px;
+  --radius-badge: 3px;
 
   /* Shadows */
   --shadow-card: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.06);

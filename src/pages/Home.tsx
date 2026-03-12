@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Layout } from '@/components/Layout'
-import { EventCard, Event } from '@/components/EventCard'
+import { EventCard } from '@/components/EventCard'
+import type { Event } from '@/components/EventCard'
 import { CATEGORY_ICONS, CATEGORY_COLORS } from '@/components/icons/CategoryIcons'
 import { fetchEvents } from '@/lib/api'
 
@@ -35,25 +36,17 @@ export function Home() {
 
   return (
     <Layout fullWidth noPad>
-      {/* === HERO: Full-width dark section === */}
-      <section className="relative min-h-[85vh] flex flex-col justify-end bg-[#1C1C1E] overflow-hidden">
-        {/* Background image from featured event or fallback */}
-        {featuredEvent && (
-          <>
-            <img
-              src={featuredEvent.image_url || `https://picsum.photos/seed/${featuredEvent.id}/1400/800`}
-              alt=""
-              className="absolute inset-0 w-full h-full object-cover opacity-40"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1C1C1E] via-[#1C1C1E]/60 to-transparent" />
-          </>
-        )}
+      {/* === HERO: Bold typographic section === */}
+      <section className="relative min-h-[70vh] flex flex-col justify-end bg-[#1C1C1E] overflow-hidden">
+        {/* Subtle gradient accent */}
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#7C3AED]/8 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-tr from-[#7C3AED]/5 to-transparent" />
 
         {/* Hero content */}
         <div className="relative max-w-6xl mx-auto px-6 pb-16 pt-32 w-full">
           {/* Tag */}
           <div className="flex items-center gap-2 mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C2582A] animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#7C3AED] animate-pulse" />
             <span className="text-xs font-medium tracking-[0.2em] uppercase text-white/50">
               Atlanta's event guide
             </span>
@@ -62,7 +55,7 @@ export function Home() {
           {/* Big headline */}
           <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-black text-white leading-none mb-6 max-w-3xl">
             Your city.<br />
-            <em className="not-italic text-[#C2582A]">This weekend.</em>
+            <em className="not-italic text-[#7C3AED]">This weekend.</em>
           </h1>
 
           <p className="text-white/50 text-lg max-w-lg mb-8 leading-relaxed font-sans">
@@ -73,7 +66,7 @@ export function Home() {
           <div className="flex flex-wrap gap-3">
             <Link
               to="/browse"
-              className="inline-flex items-center gap-2 bg-[#C2582A] text-white px-6 py-3 text-sm font-semibold hover:bg-[#A8461F] transition-colors"
+              className="inline-flex items-center gap-2 bg-[#7C3AED] text-white px-6 py-3 rounded-[6px] text-sm font-semibold hover:bg-[#6D28D9] transition-colors"
             >
               Browse Events
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -82,7 +75,7 @@ export function Home() {
             </Link>
             <Link
               to="/sign-up"
-              className="inline-flex items-center gap-2 bg-transparent border border-white/20 text-white/70 px-6 py-3 text-sm font-medium hover:border-white/40 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 bg-transparent border border-white/20 text-white/70 px-6 py-3 rounded-[6px] text-sm font-medium hover:border-white/40 hover:text-white transition-colors"
             >
               Create Account
             </Link>
@@ -101,8 +94,8 @@ export function Home() {
                   to={`/browse?category=${cat.slug}`}
                   className="flex items-center gap-2 text-white/40 hover:text-white transition-colors flex-shrink-0 group"
                 >
-                  {Icon && <Icon size={14} color={color} className="opacity-60 group-hover:opacity-100 transition-opacity" />}
-                  <span className="text-xs font-medium tracking-wide whitespace-nowrap">{cat.label}</span>
+                  {Icon && <Icon size={18} color={color} className="opacity-60 group-hover:opacity-100 transition-opacity" />}
+                  <span className="text-sm font-medium tracking-wide whitespace-nowrap">{cat.label}</span>
                 </Link>
               )
             })}
@@ -123,7 +116,7 @@ export function Home() {
             </div>
             <Link
               to="/browse"
-              className="hidden md:flex items-center gap-2 text-sm font-medium text-[#C2582A] hover:text-[#A8461F] transition-colors"
+              className="hidden md:flex items-center gap-2 text-sm font-medium text-[#7C3AED] hover:text-[#6D28D9] transition-colors"
             >
               See everything
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -183,7 +176,7 @@ export function Home() {
             Find your thing.
           </h2>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-px bg-white/10">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
             {FEATURED_CATEGORIES.map(cat => {
               const Icon = CATEGORY_ICONS[cat.slug]
               const color = CATEGORY_COLORS[cat.slug]
@@ -191,12 +184,12 @@ export function Home() {
                 <Link
                   key={cat.slug}
                   to={`/browse?category=${cat.slug}`}
-                  className="group bg-[#1C1C1E] p-6 flex flex-col gap-4 hover:bg-white/5 transition-colors"
+                  className="group bg-white/5 hover:bg-white/10 rounded-[6px] p-5 flex flex-col items-center gap-3 transition-colors"
                 >
                   {Icon && (
-                    <Icon size={24} color={color} />
+                    <Icon size={32} color={color} />
                   )}
-                  <span className="text-sm font-medium text-white/70 group-hover:text-white transition-colors leading-tight">
+                  <span className="text-sm font-semibold text-white/80 group-hover:text-white transition-colors text-center">
                     {cat.label}
                   </span>
                 </Link>
@@ -216,7 +209,7 @@ export function Home() {
               </h2>
               <Link
                 to="/browse"
-                className="text-sm font-medium text-[#C2582A] hover:text-[#A8461F] transition-colors"
+                className="text-sm font-medium text-[#7C3AED] hover:text-[#6D28D9] transition-colors"
               >
                 Browse all →
               </Link>
@@ -231,7 +224,7 @@ export function Home() {
       )}
 
       {/* === CTA BANNER === */}
-      <section className="bg-[#C2582A] py-16">
+      <section className="bg-[#7C3AED] py-16">
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
             <h2 className="font-display text-3xl md:text-4xl font-black text-white mb-2">
@@ -243,7 +236,7 @@ export function Home() {
           </div>
           <Link
             to="/events/new"
-            className="flex-shrink-0 bg-white text-[#C2582A] px-8 py-4 text-sm font-bold hover:bg-[#F5F0E8] transition-colors"
+            className="flex-shrink-0 bg-white text-[#7C3AED] px-8 py-4 rounded-[6px] text-sm font-bold hover:bg-[#F5F0E8] transition-colors"
           >
             Post an Event
           </Link>

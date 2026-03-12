@@ -114,7 +114,7 @@ export function Browse() {
             value={search}
             onChange={e => handleSearchChange(e.target.value)}
             placeholder="Search events, artists, venues..."
-            className="w-full pl-11 pr-4 py-3 bg-white border border-[#E2DDD6] text-sm text-[#1C1C1E] placeholder:text-[#8A8480] focus:outline-none focus:border-[#C2582A] transition-colors font-sans"
+            className="w-full pl-11 pr-4 py-3 bg-white border border-[#E2DDD6] text-sm text-[#1C1C1E] placeholder:text-[#8A8480] focus:outline-none focus:border-[#7C3AED] transition-colors font-sans"
           />
           {search && (
             <button onClick={() => { setSearch(''); setDebouncedSearch(''); setPage(0) }}
@@ -137,7 +137,7 @@ export function Browse() {
           </svg>
           Filters
           {hasActiveFilters && (
-            <span className="w-4 h-4 rounded-full bg-[#C2582A] text-white text-[10px] flex items-center justify-center">
+            <span className="w-4 h-4 rounded-full bg-[#7C3AED] text-white text-[10px] flex items-center justify-center">
               {(activeCategories.length > 0 ? 1 : 0) + (freeOnly ? 1 : 0) + (dateFrom || dateTo ? 1 : 0) + (timeOfDay ? 1 : 0)}
             </span>
           )}
@@ -153,7 +153,7 @@ export function Browse() {
             <div className="flex flex-wrap gap-2">
               {categories.map(cat => {
                 const Icon = CATEGORY_ICONS[cat.slug]
-                const color = CATEGORY_COLORS[cat.slug] || cat.color || '#C2582A'
+                const color = CATEGORY_COLORS[cat.slug] || cat.color || '#7C3AED'
                 const isActive = activeCategories.includes(cat.slug)
                 return (
                   <button
@@ -200,17 +200,17 @@ export function Browse() {
               <p className="text-xs font-semibold tracking-widest uppercase text-[#8A8480] mb-2">Date Range</p>
               <div className="flex items-center gap-2">
                 <input type="date" value={dateFrom} onChange={e => { setDateFrom(e.target.value); setPage(0) }}
-                  className="px-3 py-2 text-sm border border-[#E2DDD6] text-[#1C1C1E] focus:outline-none focus:border-[#C2582A] font-sans" />
+                  className="px-3 py-2 text-sm border border-[#E2DDD6] text-[#1C1C1E] focus:outline-none focus:border-[#7C3AED] font-sans" />
                 <span className="text-[#8A8480] text-sm">—</span>
                 <input type="date" value={dateTo} min={dateFrom} onChange={e => { setDateTo(e.target.value); setPage(0) }}
-                  className="px-3 py-2 text-sm border border-[#E2DDD6] text-[#1C1C1E] focus:outline-none focus:border-[#C2582A] font-sans" />
+                  className="px-3 py-2 text-sm border border-[#E2DDD6] text-[#1C1C1E] focus:outline-none focus:border-[#7C3AED] font-sans" />
               </div>
             </div>
 
             <label className="flex items-center gap-2 cursor-pointer">
               <div
                 onClick={() => { setFreeOnly(!freeOnly); setPage(0) }}
-                className={`w-10 h-5 rounded-full transition-all relative ${freeOnly ? 'bg-[#C2582A]' : 'bg-[#DDD5C8]'}`}
+                className={`w-10 h-5 rounded-full transition-all relative ${freeOnly ? 'bg-[#7C3AED]' : 'bg-[#DDD5C8]'}`}
               >
                 <div className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-all ${freeOnly ? 'left-5' : 'left-0.5'}`} />
               </div>
@@ -218,7 +218,7 @@ export function Browse() {
             </label>
 
             {hasActiveFilters && (
-              <button onClick={clearAll} className="text-xs text-[#8A8480] hover:text-[#C2582A] underline transition-colors font-sans ml-auto">
+              <button onClick={clearAll} className="text-xs text-[#8A8480] hover:text-[#7C3AED] underline transition-colors font-sans ml-auto">
                 Clear all filters
               </button>
             )}
@@ -251,7 +251,7 @@ export function Browse() {
           <p className="font-display text-2xl font-bold text-[#1C1C1E] mb-2">Nothing found.</p>
           <p className="text-[#8A8480] text-sm mb-6">
             Try different filters or{' '}
-            <button onClick={clearAll} className="text-[#C2582A] font-medium hover:underline">clear all</button>
+            <button onClick={clearAll} className="text-[#7C3AED] font-medium hover:underline">clear all</button>
           </p>
         </div>
       ) : (
