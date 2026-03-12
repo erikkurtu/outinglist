@@ -19,33 +19,6 @@ const FEATURED_CATEGORIES = [
   { slug: 'workshops-classes', label: 'Workshops' },
 ]
 
-const TIME_WORDS = ['Today', 'This week', 'This month', 'This year']
-
-function RotatingText() {
-  const [index, setIndex] = useState(0)
-  const [fade, setFade] = useState(true)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setFade(false)
-      setTimeout(() => {
-        setIndex(i => (i + 1) % TIME_WORDS.length)
-        setFade(true)
-      }, 300)
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [])
-
-  return (
-    <span
-      className="inline-block transition-opacity duration-300"
-      style={{ opacity: fade ? 1 : 0 }}
-    >
-      {TIME_WORDS[index]}
-    </span>
-  )
-}
-
 // Sample curated lists for homepage
 const FEATURED_LISTS = [
   { id: 'date-night', title: 'Date Night in Atlanta', desc: 'Romantic outings for two', count: 12 },
@@ -77,7 +50,7 @@ export function Home() {
           </div>
 
           <h1 className="font-display text-4xl md:text-5xl font-black text-[#1A1A1F] leading-tight mb-3">
-            <RotatingText /> <em>in Atlanta.</em>
+            Coming up <em>in Atlanta.</em>
           </h1>
           <p className="text-[#6B7280] text-sm max-w-lg leading-relaxed font-sans mb-5">
             Community talks, markets, art shows, block parties — everything happening in Atlanta, curated by people who love going out.
@@ -85,7 +58,8 @@ export function Home() {
           <div className="flex flex-wrap gap-3 mb-4">
             <Link
               to="/browse"
-              className="inline-flex items-center gap-2 bg-[#5B5BD6] text-white px-4 py-2 rounded-[6px] text-sm font-semibold hover:bg-[#4F46E5] transition-colors"
+              className="inline-flex items-center gap-2 bg-[#5B5BD6] px-4 py-2 rounded-[6px] text-sm font-semibold hover:bg-[#4F46E5] transition-colors"
+              style={{ color: '#fff' }}
             >
               Browse Events
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">

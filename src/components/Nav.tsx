@@ -39,7 +39,7 @@ export function Nav() {
         <nav className="hidden md:flex items-center gap-8">
           {[
             { to: '/browse', label: 'Browse' },
-            { to: '/lists', label: 'Lists' },
+            { to: '/lists', label: 'Curated Lists' },
           ].map(item => (
             <NavLink
               key={item.to}
