@@ -68,9 +68,9 @@ export function EventDetail() {
     <Layout>
       <div className="max-w-3xl mx-auto">
         <div className="space-y-3 pt-8">
-          <div className="h-3 bg-[#DDD5C8] rounded w-24 animate-pulse" />
-          <div className="h-8 bg-[#DDD5C8] rounded w-3/4 animate-pulse" />
-          <div className="h-4 bg-[#DDD5C8] rounded w-1/2 animate-pulse" />
+          <div className="h-3 bg-[#D1D5DB] rounded w-24 animate-pulse" />
+          <div className="h-8 bg-[#D1D5DB] rounded w-3/4 animate-pulse" />
+          <div className="h-4 bg-[#D1D5DB] rounded w-1/2 animate-pulse" />
         </div>
       </div>
     </Layout>
@@ -79,14 +79,14 @@ export function EventDetail() {
   if (error || !event) return (
     <Layout>
       <div className="text-center py-20">
-        <h2 className="font-display text-xl font-bold mb-2 text-[#1C1C1E]">Event not found</h2>
-        <Link to="/browse" className="text-[#7C3AED] hover:underline text-sm">← Back to browse</Link>
+        <h2 className="font-display text-xl font-bold mb-2 text-[#1A1A1F]">Event not found</h2>
+        <Link to="/browse" className="text-[#6366F1] hover:underline text-sm">← Back to browse</Link>
       </div>
     </Layout>
   )
 
   const primaryCat = event.categories?.[0]
-  const catColor = primaryCat?.slug ? CATEGORY_COLORS[primaryCat.slug] : '#7C3AED'
+  const catColor = primaryCat?.slug ? CATEGORY_COLORS[primaryCat.slug] : '#6366F1'
   const isFree = event.is_free === 1
   const priceLabel = isFree ? 'Free' : formatPrice(event.price_min, event.price_max)
 
@@ -103,7 +103,7 @@ export function EventDetail() {
   return (
     <Layout>
       <div className="max-w-3xl mx-auto">
-        <Link to="/browse" className="inline-flex items-center gap-1.5 text-sm text-[#8A8480] hover:text-[#1C1C1E] mb-8 transition-colors">
+        <Link to="/browse" className="inline-flex items-center gap-1.5 text-sm text-[#9CA3AF] hover:text-[#1A1A1F] mb-8 transition-colors">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <polyline points="15 18 9 12 15 6"/>
           </svg>
@@ -123,8 +123,8 @@ export function EventDetail() {
           {event.categories && event.categories.length > 1 && (
             event.categories.slice(1).map(cat => (
               <Link key={cat.id} to={`/browse?category=${cat.slug}`} className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
-                <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: CATEGORY_COLORS[cat.slug] || '#8A8480' }} />
-                <span className="text-[10px] font-medium tracking-wider uppercase text-[#8A8480]">
+                <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: CATEGORY_COLORS[cat.slug] || '#9CA3AF' }} />
+                <span className="text-[10px] font-medium tracking-wider uppercase text-[#9CA3AF]">
                   {cat.name}
                 </span>
               </Link>
@@ -133,32 +133,32 @@ export function EventDetail() {
         </div>
 
         {/* Title */}
-        <h1 className="font-display text-3xl md:text-4xl font-black text-[#1C1C1E] mb-6 leading-tight">
+        <h1 className="font-display text-3xl md:text-4xl font-black text-[#1A1A1F] mb-6 leading-tight">
           {title}
         </h1>
 
         {/* Key info row */}
-        <div className="flex flex-wrap gap-6 mb-8 pb-8 border-b border-[#E2DDD6]">
+        <div className="flex flex-wrap gap-6 mb-8 pb-8 border-b border-[#E5E7EB]">
           {/* Date & Time */}
           <div>
-            <p className="text-[10px] font-semibold tracking-widest uppercase text-[#8A8480] mb-1">When</p>
-            <p className="text-sm font-semibold text-[#1C1C1E]">{formatDate(event.start_at)}</p>
+            <p className="text-[10px] font-semibold tracking-widest uppercase text-[#9CA3AF] mb-1">When</p>
+            <p className="text-sm font-semibold text-[#1A1A1F]">{formatDate(event.start_at)}</p>
             {event.end_at && (
-              <p className="text-xs text-[#8A8480] mt-0.5">Until {formatDate(event.end_at)}</p>
+              <p className="text-xs text-[#9CA3AF] mt-0.5">Until {formatDate(event.end_at)}</p>
             )}
           </div>
 
           {/* Location */}
           {event.location_name && (
             <div>
-              <p className="text-[10px] font-semibold tracking-widest uppercase text-[#8A8480] mb-1">Where</p>
-              <p className="text-sm font-semibold text-[#1C1C1E]">{event.location_name}</p>
+              <p className="text-[10px] font-semibold tracking-widest uppercase text-[#9CA3AF] mb-1">Where</p>
+              <p className="text-sm font-semibold text-[#1A1A1F]">{event.location_name}</p>
               {event.location_address && (
                 <a
                   href={`https://maps.google.com/?q=${encodeURIComponent(event.location_address)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-[#7C3AED] hover:underline mt-0.5 block"
+                  className="text-xs text-[#6366F1] hover:underline mt-0.5 block"
                 >
                   View on map
                 </a>
@@ -169,8 +169,8 @@ export function EventDetail() {
           {/* Price */}
           {priceLabel && (
             <div>
-              <p className="text-[10px] font-semibold tracking-widest uppercase text-[#8A8480] mb-1">Price</p>
-              <p className={`text-sm font-semibold ${isFree ? 'text-[#2A7A4A]' : 'text-[#1C1C1E]'}`}>
+              <p className="text-[10px] font-semibold tracking-widest uppercase text-[#9CA3AF] mb-1">Price</p>
+              <p className={`text-sm font-semibold ${isFree ? 'text-[#2A7A4A]' : 'text-[#1A1A1F]'}`}>
                 {priceLabel}
               </p>
             </div>
@@ -179,8 +179,8 @@ export function EventDetail() {
           {/* Source */}
           {(event.source_type === 'external' || event.source_type === 'scraped') && event.source_platform && (
             <div>
-              <p className="text-[10px] font-semibold tracking-widest uppercase text-[#8A8480] mb-1">Source</p>
-              <p className="text-sm font-medium text-[#8A8480] capitalize">{event.source_platform}</p>
+              <p className="text-[10px] font-semibold tracking-widest uppercase text-[#9CA3AF] mb-1">Source</p>
+              <p className="text-sm font-medium text-[#9CA3AF] capitalize">{event.source_platform}</p>
             </div>
           )}
         </div>
@@ -200,13 +200,13 @@ export function EventDetail() {
         {/* Description */}
         {description && (
           <div className="mb-8">
-            <h2 className="text-xs font-semibold tracking-widest uppercase text-[#8A8480] mb-3">About</h2>
-            <p className="text-sm text-[#1C1C1E]/80 leading-relaxed whitespace-pre-wrap">{description}</p>
+            <h2 className="text-xs font-semibold tracking-widest uppercase text-[#9CA3AF] mb-3">About</h2>
+            <p className="text-sm text-[#1A1A1F]/80 leading-relaxed whitespace-pre-wrap">{description}</p>
           </div>
         )}
 
         {/* Action buttons */}
-        <div className="flex flex-wrap items-center gap-3 pt-6 border-t border-[#E2DDD6]">
+        <div className="flex flex-wrap items-center gap-3 pt-6 border-t border-[#E5E7EB]">
           {event.source_url && (
             <a href={event.source_url} target="_blank" rel="noopener noreferrer">
               <Button variant="primary" size="lg">
@@ -221,8 +221,8 @@ export function EventDetail() {
             title={user ? (liked ? 'Unlike' : 'Like this event') : 'Sign in to like'}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-[6px] text-sm font-medium transition-all border ${
               liked
-                ? 'bg-[#7C3AED]/10 text-[#7C3AED] border-[#7C3AED]/30'
-                : 'bg-white text-[#8A8480] border-[#E2DDD6] hover:border-[#7C3AED] hover:text-[#7C3AED]'
+                ? 'bg-[#6366F1]/10 text-[#6366F1] border-[#6366F1]/30'
+                : 'bg-white text-[#9CA3AF] border-[#E5E7EB] hover:border-[#6366F1] hover:text-[#6366F1]'
             } disabled:opacity-50`}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill={liked ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2">
@@ -233,7 +233,7 @@ export function EventDetail() {
 
           <button
             onClick={handleShare}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-[6px] text-sm font-medium transition-all border bg-white text-[#8A8480] border-[#E2DDD6] hover:border-[#1C1C1E] hover:text-[#1C1C1E]"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-[6px] text-sm font-medium transition-all border bg-white text-[#9CA3AF] border-[#E5E7EB] hover:border-[#1A1A1F] hover:text-[#1A1A1F]"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/>
@@ -243,7 +243,7 @@ export function EventDetail() {
 
           <button
             onClick={() => setShowAddToList(true)}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-[6px] text-sm font-medium transition-all border bg-white text-[#8A8480] border-[#E2DDD6] hover:border-[#7C3AED] hover:text-[#7C3AED]"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-[6px] text-sm font-medium transition-all border bg-white text-[#9CA3AF] border-[#E5E7EB] hover:border-[#6366F1] hover:text-[#6366F1]"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
@@ -252,7 +252,7 @@ export function EventDetail() {
           </button>
 
           {!user && (
-            <Link to="/sign-in" className="text-xs text-[#8A8480] hover:text-[#7C3AED] transition-colors">
+            <Link to="/sign-in" className="text-xs text-[#9CA3AF] hover:text-[#6366F1] transition-colors">
               Sign in to like events
             </Link>
           )}

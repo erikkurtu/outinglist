@@ -36,23 +36,23 @@ export function Home() {
   return (
     <Layout fullWidth noPad>
       {/* === MAIN HEADER — integrated, no dark hero === */}
-      <section className="bg-[#F5F0E8] pt-10 pb-16">
+      <section className="bg-[#F7F7F5] pt-10 pb-16">
         <div className="max-w-6xl mx-auto px-6">
           {/* Intro */}
           <div className="mb-3">
-            <span className="text-xs font-medium tracking-[0.2em] uppercase text-[#8A8480] flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#7C3AED]" />
+            <span className="text-xs font-medium tracking-[0.2em] uppercase text-[#9CA3AF] flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#6366F1]" />
               Atlanta's event guide
             </span>
           </div>
 
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-4">
             <div>
-              <h1 className="font-display text-4xl md:text-5xl font-black text-[#1C1C1E] leading-tight mb-3">
-                This weekend<br />
+              <h1 className="font-display text-4xl md:text-5xl font-black text-[#1A1A1F] leading-tight mb-3">
+                This week<br />
                 <em>in Atlanta.</em>
               </h1>
-              <p className="text-[#8A8480] text-sm max-w-lg leading-relaxed font-sans">
+              <p className="text-[#9CA3AF] text-sm max-w-lg leading-relaxed font-sans">
                 Community talks, markets, art shows, block parties — everything happening in Atlanta, curated by people who love going out.
               </p>
             </div>
@@ -60,7 +60,7 @@ export function Home() {
             <div className="flex flex-wrap gap-3 flex-shrink-0">
               <Link
                 to="/browse"
-                className="inline-flex items-center gap-2 bg-[#7C3AED] text-white px-5 py-2.5 rounded-[6px] text-sm font-semibold hover:bg-[#6D28D9] transition-colors"
+                className="inline-flex items-center gap-2 bg-[#6366F1] text-white px-5 py-2.5 rounded-[6px] text-sm font-semibold hover:bg-[#4F46E5] transition-colors"
               >
                 Browse Events
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -69,7 +69,7 @@ export function Home() {
               </Link>
               <Link
                 to="/sign-up"
-                className="inline-flex items-center gap-2 border border-[#1C1C1E] text-[#1C1C1E] px-5 py-2.5 rounded-[6px] text-sm font-medium hover:bg-[#1C1C1E] hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 border border-[#1A1A1F] text-[#1A1A1F] px-5 py-2.5 rounded-[6px] text-sm font-medium hover:bg-[#1A1A1F] hover:text-white transition-colors"
               >
                 Create Account
               </Link>
@@ -77,15 +77,15 @@ export function Home() {
           </div>
 
           {/* Divider */}
-          <div className="border-b-2 border-[#1C1C1E] mb-8" />
+          <div className="border-b-2 border-[#1A1A1F] mb-8" />
 
           {/* Event list */}
           {loading ? (
             <div className="space-y-3">
               {Array.from({ length: 8 }).map((_, i) => (
-                <div key={i} className="animate-pulse flex gap-4 py-3 border-b border-[#E2DDD6]">
-                  <div className="w-16 h-4 bg-[#DDD5C8] rounded" />
-                  <div className="flex-1 h-4 bg-[#DDD5C8] rounded" />
+                <div key={i} className="animate-pulse flex gap-4 py-3 border-b border-[#E5E7EB]">
+                  <div className="w-16 h-4 bg-[#D1D5DB] rounded" />
+                  <div className="flex-1 h-4 bg-[#D1D5DB] rounded" />
                 </div>
               ))}
             </div>
@@ -99,31 +99,31 @@ export function Home() {
                   const date = d.getDate()
                   const time = d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' })
                   const primaryCat = ev.categories?.[0]
-                  const catColor = primaryCat?.slug ? CATEGORY_COLORS[primaryCat.slug] : '#7C3AED'
+                  const catColor = primaryCat?.slug ? CATEGORY_COLORS[primaryCat.slug] : '#6366F1'
                   const isFree = ev.is_free === 1
 
                   return (
                     <Link
                       key={ev.id}
                       to={`/events/${ev.id}`}
-                      className="group flex items-baseline gap-4 py-3.5 border-b border-[#E2DDD6] hover:bg-white/30 transition-colors px-2 -mx-2"
+                      className="group flex items-baseline gap-4 py-3.5 border-b border-[#E5E7EB] hover:bg-white/30 transition-colors px-2 -mx-2"
                     >
-                      <span className="text-xs font-bold tracking-wider text-[#8A8480] w-20 flex-shrink-0">
+                      <span className="text-xs font-bold tracking-wider text-[#9CA3AF] w-20 flex-shrink-0">
                         {day} {month} {date}
                       </span>
-                      <span className="text-xs text-[#8A8480] w-14 flex-shrink-0 tabular-nums">
+                      <span className="text-xs text-[#9CA3AF] w-14 flex-shrink-0 tabular-nums">
                         {time}
                       </span>
                       <span className="w-2 h-2 rounded-full flex-shrink-0 mt-1" style={{ backgroundColor: catColor }} />
-                      <span className="flex-1 text-sm font-semibold text-[#1C1C1E] group-hover:text-[#7C3AED] transition-colors truncate">
+                      <span className="flex-1 text-sm font-semibold text-[#1A1A1F] group-hover:text-[#6366F1] transition-colors truncate">
                         {decodeEntities(ev.title)}
                       </span>
                       {ev.location_name && (
-                        <span className="text-xs text-[#8A8480] flex-shrink-0 hidden md:inline truncate max-w-[180px]">
+                        <span className="text-xs text-[#9CA3AF] flex-shrink-0 hidden md:inline truncate max-w-[180px]">
                           {ev.location_name}
                         </span>
                       )}
-                      <span className={`text-xs font-medium flex-shrink-0 ${isFree ? 'text-[#2A7A4A]' : 'text-[#1C1C1E]'}`}>
+                      <span className={`text-xs font-medium flex-shrink-0 ${isFree ? 'text-[#2A7A4A]' : 'text-[#1A1A1F]'}`}>
                         {isFree ? 'Free' : ev.price_min ? `$${ev.price_min}` : ''}
                       </span>
                     </Link>
@@ -134,7 +134,7 @@ export function Home() {
               <div className="mt-6 text-center">
                 <Link
                   to="/browse"
-                  className="inline-flex items-center gap-2 text-sm font-medium text-[#7C3AED] hover:text-[#6D28D9] transition-colors"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-[#6366F1] hover:text-[#4F46E5] transition-colors"
                 >
                   See all events
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -148,7 +148,7 @@ export function Home() {
       </section>
 
       {/* === BROWSE BY INTEREST === */}
-      <section className="bg-[#1C1C1E] py-14">
+      <section className="bg-[#1A1A1F] py-14">
         <div className="max-w-6xl mx-auto px-6">
           <p className="text-xs font-medium tracking-[0.2em] uppercase text-white/30 mb-3">Browse by interest</p>
           <h2 className="font-display text-3xl font-black text-white mb-8">
@@ -176,56 +176,8 @@ export function Home() {
         </div>
       </section>
 
-      {/* === MORE EVENTS === */}
-      {moreEvents.length > 0 && (
-        <section className="bg-[#F5F0E8] py-14">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="flex items-end justify-between mb-8">
-              <h2 className="font-display text-3xl font-black text-[#1C1C1E]">
-                More in Atlanta
-              </h2>
-              <Link
-                to="/browse"
-                className="text-sm font-medium text-[#7C3AED] hover:text-[#6D28D9] transition-colors"
-              >
-                Browse all →
-              </Link>
-            </div>
-            <div className="space-y-0">
-              {moreEvents.map(ev => {
-                const d = new Date(ev.start_at)
-                const day = d.toLocaleDateString('en-US', { weekday: 'short', timeZone: 'America/New_York' }).toUpperCase()
-                const month = d.toLocaleDateString('en-US', { month: 'short', timeZone: 'America/New_York' })
-                const date = d.getDate()
-                const primaryCat = ev.categories?.[0]
-                const catColor = primaryCat?.slug ? CATEGORY_COLORS[primaryCat.slug] : '#7C3AED'
-
-                return (
-                  <Link
-                    key={ev.id}
-                    to={`/events/${ev.id}`}
-                    className="group flex items-baseline gap-4 py-3 border-b border-[#E2DDD6] hover:bg-white/30 transition-colors px-2 -mx-2"
-                  >
-                    <span className="text-xs font-bold tracking-wider text-[#8A8480] w-20 flex-shrink-0">
-                      {day} {month} {date}
-                    </span>
-                    <span className="w-2 h-2 rounded-full flex-shrink-0 mt-1" style={{ backgroundColor: catColor }} />
-                    <span className="flex-1 text-sm font-semibold text-[#1C1C1E] group-hover:text-[#7C3AED] transition-colors truncate">
-                      {decodeEntities(ev.title)}
-                    </span>
-                    {ev.location_name && (
-                      <span className="text-xs text-[#8A8480] flex-shrink-0 hidden sm:inline">{ev.location_name}</span>
-                    )}
-                  </Link>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* === CTA BANNER === */}
-      <section className="bg-[#7C3AED] py-14">
+      <section className="bg-[#6366F1] py-14">
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
             <h2 className="font-display text-3xl md:text-4xl font-black text-white mb-2">
@@ -237,7 +189,7 @@ export function Home() {
           </div>
           <Link
             to="/events/new"
-            className="flex-shrink-0 bg-white text-[#7C3AED] px-8 py-4 rounded-[6px] text-sm font-bold hover:bg-[#F5F0E8] transition-colors"
+            className="flex-shrink-0 bg-white text-[#6366F1] px-8 py-4 rounded-[6px] text-sm font-bold hover:bg-[#F7F7F5] transition-colors"
           >
             Post an Event
           </Link>

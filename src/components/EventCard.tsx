@@ -68,7 +68,7 @@ const CATEGORY_BG_DARK: Record<string, string> = {
 
 function getCategoryBg(slug?: string) {
   if (slug && CATEGORY_BG_DARK[slug]) return CATEGORY_BG_DARK[slug]
-  return '#1C1C1E'
+  return '#1A1A1F'
 }
 
 export function EventCard({ event, onLike, liked = false, compact = false, featured = false, className }: EventCardProps) {
@@ -76,7 +76,7 @@ export function EventCard({ event, onLike, liked = false, compact = false, featu
   const [showAddToList, setShowAddToList] = useState(false)
   const primaryCat = event.categories?.[0]
   const IconComponent = primaryCat?.slug ? CATEGORY_ICONS[primaryCat.slug] : null
-  const catColor = primaryCat?.slug ? CATEGORY_COLORS[primaryCat.slug] : '#7C3AED'
+  const catColor = primaryCat?.slug ? CATEGORY_COLORS[primaryCat.slug] : '#6366F1'
   const catBg = getCategoryBg(primaryCat?.slug)
   const imageUrl = event.image_url || null  // No placeholder — only show image if one exists
   const dateLabel = formatEventDate(event.start_at)
@@ -160,7 +160,7 @@ export function EventCard({ event, onLike, liked = false, compact = false, featu
             className={cn(
               'absolute top-5 right-5 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-150',
               'backdrop-blur-sm',
-              isLiked ? 'bg-[#7C3AED] text-white' : 'bg-black/40 text-white/70 hover:text-white'
+              isLiked ? 'bg-[#6366F1] text-white' : 'bg-black/40 text-white/70 hover:text-white'
             )}
             aria-label="Like event"
           >
@@ -203,7 +203,7 @@ export function EventCard({ event, onLike, liked = false, compact = false, featu
             {/* Free badge */}
             {event.is_free === 1 && (
               <div className="absolute top-3 left-3">
-                <span className="bg-[#1C1C1E] text-white text-xs font-semibold tracking-wide px-2 py-1 rounded-[3px]">
+                <span className="bg-[#1A1A1F] text-white text-xs font-semibold tracking-wide px-2 py-1 rounded-[3px]">
                   FREE
                 </span>
               </div>
@@ -215,7 +215,7 @@ export function EventCard({ event, onLike, liked = false, compact = false, featu
               className={cn(
                 'absolute top-3 right-3 w-8 h-8 flex items-center justify-center transition-all duration-150 rounded-[6px]',
                 'backdrop-blur-sm',
-                isLiked ? 'bg-[#7C3AED] text-white' : 'bg-black/30 text-white/70 hover:text-white opacity-0 group-hover:opacity-100'
+                isLiked ? 'bg-[#6366F1] text-white' : 'bg-black/30 text-white/70 hover:text-white opacity-0 group-hover:opacity-100'
               )}
               aria-label="Like event"
             >
@@ -241,7 +241,7 @@ export function EventCard({ event, onLike, liked = false, compact = false, featu
             <div className="h-0.5 w-12" style={{ backgroundColor: catColor }} />
             <div className="flex items-center justify-between pt-2">
               {event.is_free === 1 && (
-                <span className="text-xs font-semibold tracking-wide text-[#1C1C1E] bg-[#E8E2D8] px-2 py-0.5 rounded-[3px]">
+                <span className="text-xs font-semibold tracking-wide text-[#1A1A1F] bg-[#E5E7EB] px-2 py-0.5 rounded-[3px]">
                   FREE
                 </span>
               )}
@@ -250,7 +250,7 @@ export function EventCard({ event, onLike, liked = false, compact = false, featu
                   onClick={handleLike}
                   className={cn(
                     'w-7 h-7 flex items-center justify-center transition-all duration-150 rounded-[6px]',
-                    isLiked ? 'text-[#7C3AED]' : 'text-[#C4BEB4] hover:text-[#7C3AED] opacity-0 group-hover:opacity-100'
+                    isLiked ? 'text-[#6366F1]' : 'text-[#D1D5DB] hover:text-[#6366F1] opacity-0 group-hover:opacity-100'
                   )}
                   aria-label="Like event"
                 >
@@ -276,15 +276,15 @@ export function EventCard({ event, onLike, liked = false, compact = false, featu
           )}
 
           {/* Title */}
-          <h3 className="font-display font-bold text-[#1C1C1E] leading-tight mb-2 transition-colors group-hover:text-[#7C3AED]"
+          <h3 className="font-display font-bold text-[#1A1A1F] leading-tight mb-2 transition-colors group-hover:text-[#6366F1]"
             style={{ fontSize: compact ? '1rem' : '1.1rem', lineHeight: 1.25 }}>
             {event.title}
           </h3>
 
           {/* Date and location */}
-          <div className="flex items-center gap-3 text-xs text-[#8A8480]">
+          <div className="flex items-center gap-3 text-xs text-[#9CA3AF]">
             {dateLabel && <span className="font-medium tracking-wider">{dateLabel}</span>}
-            {dateLabel && event.location_name && <span className="text-[#D0C8BF]">·</span>}
+            {dateLabel && event.location_name && <span className="text-[#D1D5DB]">·</span>}
             {event.location_name && (
               <span className="truncate">{event.location_name}</span>
             )}
@@ -292,7 +292,7 @@ export function EventCard({ event, onLike, liked = false, compact = false, featu
 
           {/* Price */}
           {event.is_free !== 1 && priceLabel && (
-            <div className="mt-1.5 text-xs font-semibold text-[#7C3AED]">
+            <div className="mt-1.5 text-xs font-semibold text-[#6366F1]">
               {priceLabel}
             </div>
           )}

@@ -11,12 +11,12 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variants = {
-  primary: 'bg-[#7C3AED] text-white hover:bg-[#6D28D9] border border-transparent',
-  secondary: 'bg-[#1C1C1E] text-white hover:bg-[#2D2D2D] border border-transparent',
-  ghost: 'bg-transparent text-[#1C1C1E] hover:bg-[#EDE7DC] border border-transparent',
+  primary: 'bg-[#6366F1] text-white hover:bg-[#4F46E5] border border-transparent',
+  secondary: 'bg-[#1A1A1F] text-white hover:bg-[#2D2D2D] border border-transparent',
+  ghost: 'bg-transparent text-[#1A1A1F] hover:bg-[#EDE7DC] border border-transparent',
   danger: 'bg-red-600 text-white hover:bg-red-700 border border-transparent',
-  accent: 'bg-[#F5F0E8] text-[#7C3AED] hover:bg-[#EDE7DC] border border-transparent',
-  outline: 'bg-transparent text-[#1C1C1E] border border-[#1C1C1E] hover:bg-[#1C1C1E] hover:text-white',
+  accent: 'bg-[#F7F7F5] text-[#6366F1] hover:bg-[#EDE7DC] border border-transparent',
+  outline: 'bg-transparent text-[#1A1A1F] border border-[#1A1A1F] hover:bg-[#1A1A1F] hover:text-white',
 }
 
 const sizes = {

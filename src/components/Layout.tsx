@@ -11,7 +11,7 @@ interface LayoutProps {
 
 export function Layout({ children, className, fullWidth = false, noPad = false }: LayoutProps) {
   return (
-    <div className="min-h-screen bg-[#F5F0E8] flex flex-col">
+    <div className="min-h-screen bg-[#F7F7F5] flex flex-col">
       <Nav />
       <main className={cn(
         'flex-1',
@@ -21,11 +21,11 @@ export function Layout({ children, className, fullWidth = false, noPad = false }
       )}>
         {children}
       </main>
-      <footer className="hidden md:block bg-[#1C1C1E] border-t border-white/10 py-10">
+      <footer className="hidden md:block bg-[#1A1A1F] border-t border-white/10 py-10">
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
           <div className="font-display font-bold text-white text-lg">
             OutingList
-            <span className="ml-1.5 text-[10px] font-sans font-semibold tracking-widest text-[#7C3AED] uppercase align-middle">ATL</span>
+            <span className="ml-1.5 text-[10px] font-sans font-semibold tracking-widest text-[#6366F1] uppercase align-middle">ATL</span>
           </div>
           <p className="text-xs text-white/30">
             Your friend who always knows what's happening in Atlanta.

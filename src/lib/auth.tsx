@@ -55,7 +55,7 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, isLoaded } = useAuth()
   const [, navigate] = [null, (path: string) => { window.location.href = path }]
 
-  if (!isLoaded) return <div className="flex items-center justify-center min-h-[400px]"><div className="animate-spin w-6 h-6 border-2 border-[#7C3AED] border-t-transparent rounded-full" /></div>
+  if (!isLoaded) return <div className="flex items-center justify-center min-h-[400px]"><div className="animate-spin w-6 h-6 border-2 border-[#6366F1] border-t-transparent rounded-full" /></div>
 
   if (!user) {
     window.location.href = '/sign-in'

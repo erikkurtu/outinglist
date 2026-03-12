@@ -4,17 +4,17 @@
 @import "tailwindcss";
 
 @theme {
-  /* === NEW PALETTE === */
-  --color-brand-dark: #1C1C1E;
-  --color-brand-bg: #F5F0E8;
-  --color-brand-surface: #FDFAF5;
-  --color-brand-primary: #7C3AED;
-  --color-brand-primary-hover: #6D28D9;
-  --color-brand-text: #1C1C1E;
-  --color-brand-muted: #8A8480;
-  --color-brand-border: #E2DDD6;
-  --color-brand-sand: #DDD5C8;
-  --color-brand-ink: #2D2B28;
+  /* === PALETTE — cooler, softer === */
+  --color-brand-dark: #1A1A1F;
+  --color-brand-bg: #F7F7F5;
+  --color-brand-surface: #FCFCFB;
+  --color-brand-primary: #6366F1;
+  --color-brand-primary-hover: #4F46E5;
+  --color-brand-text: #1A1A1F;
+  --color-brand-muted: #9CA3AF;
+  --color-brand-border: #E5E7EB;
+  --color-brand-sand: #D1D5DB;
+  --color-brand-ink: #374151;
 
   /* Category Colors */
   --color-cat-music: #5B35C8;

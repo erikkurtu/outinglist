@@ -125,8 +125,8 @@ export function Browse() {
     <Layout>
       {/* Page header */}
       <div className="mb-6">
-        <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#8A8480] mb-1">Atlanta events</p>
-        <h1 className="font-display text-4xl md:text-5xl font-black text-[#1C1C1E]">
+        <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#9CA3AF] mb-1">Atlanta events</p>
+        <h1 className="font-display text-4xl md:text-5xl font-black text-[#1A1A1F]">
           What's on.
         </h1>
       </div>
@@ -134,7 +134,7 @@ export function Browse() {
       {/* Search + Filter bar */}
       <div className="mb-6 flex gap-3 items-start">
         <div className="relative flex-1">
-          <svg className="absolute left-4 top-1/2 -translate-y-1/2 text-[#8A8480]" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg className="absolute left-4 top-1/2 -translate-y-1/2 text-[#9CA3AF]" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
           </svg>
           <input
@@ -142,11 +142,11 @@ export function Browse() {
             value={search}
             onChange={e => handleSearchChange(e.target.value)}
             placeholder="Search events, artists, venues..."
-            className="w-full pl-11 pr-4 py-3 bg-white border border-[#E2DDD6] rounded-[6px] text-sm text-[#1C1C1E] placeholder:text-[#8A8480] focus:outline-none focus:border-[#7C3AED] transition-colors font-sans"
+            className="w-full pl-11 pr-4 py-3 bg-white border border-[#E5E7EB] rounded-[6px] text-sm text-[#1A1A1F] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#6366F1] transition-colors font-sans"
           />
           {search && (
             <button onClick={() => { setSearch(''); setDebouncedSearch(''); setPage(0) }}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-[#8A8480] hover:text-[#1C1C1E] text-xs">✕</button>
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-[#9CA3AF] hover:text-[#1A1A1F] text-xs">✕</button>
           )}
         </div>
 
@@ -154,8 +154,8 @@ export function Browse() {
           onClick={() => setShowFilters(!showFilters)}
           className={`flex items-center gap-2 px-4 py-3 border rounded-[6px] text-sm font-medium transition-colors font-sans ${
             showFilters || hasActiveFilters
-              ? 'bg-[#1C1C1E] text-white border-[#1C1C1E]'
-              : 'bg-white border-[#E2DDD6] text-[#1C1C1E] hover:border-[#1C1C1E]'
+              ? 'bg-[#1A1A1F] text-white border-[#1A1A1F]'
+              : 'bg-white border-[#E5E7EB] text-[#1A1A1F] hover:border-[#1A1A1F]'
           }`}
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -164,17 +164,17 @@ export function Browse() {
           </svg>
           Filters
           {hasActiveFilters && (
-            <span className="w-4 h-4 rounded-full bg-[#7C3AED] text-white text-[10px] flex items-center justify-center">
+            <span className="w-4 h-4 rounded-full bg-[#6366F1] text-white text-[10px] flex items-center justify-center">
               {(activeCategories.length > 0 ? 1 : 0) + (freeOnly ? 1 : 0) + (dateFrom || dateTo ? 1 : 0) + (timeOfDay ? 1 : 0)}
             </span>
           )}
         </button>
 
         {/* View toggle */}
-        <div className="flex border border-[#E2DDD6] rounded-[6px] overflow-hidden">
+        <div className="flex border border-[#E5E7EB] rounded-[6px] overflow-hidden">
           <button
             onClick={() => setViewMode('list')}
-            className={`px-3 py-3 transition-colors ${viewMode === 'list' ? 'bg-[#1C1C1E] text-white' : 'bg-white text-[#8A8480] hover:text-[#1C1C1E]'}`}
+            className={`px-3 py-3 transition-colors ${viewMode === 'list' ? 'bg-[#1A1A1F] text-white' : 'bg-white text-[#9CA3AF] hover:text-[#1A1A1F]'}`}
             title="List view"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -183,7 +183,7 @@ export function Browse() {
           </button>
           <button
             onClick={() => setViewMode('compact')}
-            className={`px-3 py-3 transition-colors ${viewMode === 'compact' ? 'bg-[#1C1C1E] text-white' : 'bg-white text-[#8A8480] hover:text-[#1C1C1E]'}`}
+            className={`px-3 py-3 transition-colors ${viewMode === 'compact' ? 'bg-[#1A1A1F] text-white' : 'bg-white text-[#9CA3AF] hover:text-[#1A1A1F]'}`}
             title="Compact view"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -196,14 +196,14 @@ export function Browse() {
 
       {/* Expanded filters */}
       {showFilters && (
-        <div className="mb-6 bg-white border border-[#E2DDD6] rounded-[6px] p-6 space-y-5">
+        <div className="mb-6 bg-white border border-[#E5E7EB] rounded-[6px] p-6 space-y-5">
           {/* Categories */}
           <div>
-            <p className="text-xs font-semibold tracking-widest uppercase text-[#8A8480] mb-3">Category</p>
+            <p className="text-xs font-semibold tracking-widest uppercase text-[#9CA3AF] mb-3">Category</p>
             <div className="flex flex-wrap gap-2">
               {categories.map(cat => {
                 const Icon = CATEGORY_ICONS[cat.slug]
-                const color = CATEGORY_COLORS[cat.slug] || cat.color || '#7C3AED'
+                const color = CATEGORY_COLORS[cat.slug] || cat.color || '#6366F1'
                 const isActive = activeCategories.includes(cat.slug)
                 return (
                   <button
@@ -212,7 +212,7 @@ export function Browse() {
                     className={`flex items-center gap-2 px-3 py-1.5 text-xs font-medium border rounded-[4px] transition-all font-sans ${
                       isActive
                         ? 'text-white border-transparent'
-                        : 'bg-transparent border-[#E2DDD6] text-[#1C1C1E] hover:border-[#1C1C1E]'
+                        : 'bg-transparent border-[#E5E7EB] text-[#1A1A1F] hover:border-[#1A1A1F]'
                     }`}
                     style={isActive ? { backgroundColor: color, borderColor: color } : {}}
                   >
@@ -227,7 +227,7 @@ export function Browse() {
           {/* Time + Date + Free */}
           <div className="flex flex-wrap gap-6 items-end">
             <div>
-              <p className="text-xs font-semibold tracking-widest uppercase text-[#8A8480] mb-2">Time of Day</p>
+              <p className="text-xs font-semibold tracking-widest uppercase text-[#9CA3AF] mb-2">Time of Day</p>
               <div className="flex gap-1.5">
                 {(['', 'morning', 'afternoon', 'evening', 'night'] as const).map(t => (
                   <button
@@ -235,8 +235,8 @@ export function Browse() {
                     onClick={() => { setTimeOfDay(t); setPage(0) }}
                     className={`px-3 py-1.5 text-xs font-medium border rounded-[4px] transition-all font-sans ${
                       timeOfDay === t
-                        ? 'bg-[#1C1C1E] text-white border-[#1C1C1E]'
-                        : 'bg-transparent border-[#E2DDD6] text-[#1C1C1E] hover:border-[#1C1C1E]'
+                        ? 'bg-[#1A1A1F] text-white border-[#1A1A1F]'
+                        : 'bg-transparent border-[#E5E7EB] text-[#1A1A1F] hover:border-[#1A1A1F]'
                     }`}
                   >
                     {t === '' ? 'Any' : t.charAt(0).toUpperCase() + t.slice(1)}
@@ -246,28 +246,28 @@ export function Browse() {
             </div>
 
             <div>
-              <p className="text-xs font-semibold tracking-widest uppercase text-[#8A8480] mb-2">Date Range</p>
+              <p className="text-xs font-semibold tracking-widest uppercase text-[#9CA3AF] mb-2">Date Range</p>
               <div className="flex items-center gap-2">
                 <input type="date" value={dateFrom} onChange={e => { setDateFrom(e.target.value); setPage(0) }}
-                  className="px-3 py-1.5 text-xs border border-[#E2DDD6] rounded-[4px] text-[#1C1C1E] focus:outline-none focus:border-[#7C3AED] font-sans" />
-                <span className="text-[#8A8480] text-xs">to</span>
+                  className="px-3 py-1.5 text-xs border border-[#E5E7EB] rounded-[4px] text-[#1A1A1F] focus:outline-none focus:border-[#6366F1] font-sans" />
+                <span className="text-[#9CA3AF] text-xs">to</span>
                 <input type="date" value={dateTo} min={dateFrom} onChange={e => { setDateTo(e.target.value); setPage(0) }}
-                  className="px-3 py-1.5 text-xs border border-[#E2DDD6] rounded-[4px] text-[#1C1C1E] focus:outline-none focus:border-[#7C3AED] font-sans" />
+                  className="px-3 py-1.5 text-xs border border-[#E5E7EB] rounded-[4px] text-[#1A1A1F] focus:outline-none focus:border-[#6366F1] font-sans" />
               </div>
             </div>
 
             <label className="flex items-center gap-2 cursor-pointer">
               <div
                 onClick={() => { setFreeOnly(!freeOnly); setPage(0) }}
-                className={`w-8 h-4 rounded-full transition-all relative cursor-pointer ${freeOnly ? 'bg-[#7C3AED]' : 'bg-[#DDD5C8]'}`}
+                className={`w-8 h-4 rounded-full transition-all relative cursor-pointer ${freeOnly ? 'bg-[#6366F1]' : 'bg-[#D1D5DB]'}`}
               >
                 <div className={`absolute top-0.5 w-3 h-3 bg-white rounded-full shadow transition-all ${freeOnly ? 'left-4' : 'left-0.5'}`} />
               </div>
-              <span className="text-xs font-medium text-[#1C1C1E] font-sans">Free only</span>
+              <span className="text-xs font-medium text-[#1A1A1F] font-sans">Free only</span>
             </label>
 
             {hasActiveFilters && (
-              <button onClick={clearAll} className="text-xs text-[#8A8480] hover:text-[#7C3AED] underline transition-colors font-sans ml-auto">
+              <button onClick={clearAll} className="text-xs text-[#9CA3AF] hover:text-[#6366F1] underline transition-colors font-sans ml-auto">
                 Clear all
               </button>
             )}
@@ -277,7 +277,7 @@ export function Browse() {
 
       {/* Result count */}
       <div className="mb-4 flex items-center justify-between">
-        <p className="text-sm text-[#8A8480] font-sans">
+        <p className="text-sm text-[#9CA3AF] font-sans">
           {loading ? '...' : `${total} event${total !== 1 ? 's' : ''}`}
           {hasActiveFilters && ' matching'}
         </p>
@@ -287,19 +287,19 @@ export function Browse() {
       {loading ? (
         <div className="space-y-3">
           {Array.from({ length: 10 }).map((_, i) => (
-            <div key={i} className="animate-pulse flex gap-4 py-3 border-b border-[#E2DDD6]">
-              <div className="w-16 h-4 bg-[#DDD5C8] rounded" />
-              <div className="flex-1 h-4 bg-[#DDD5C8] rounded" />
-              <div className="w-24 h-4 bg-[#DDD5C8] rounded" />
+            <div key={i} className="animate-pulse flex gap-4 py-3 border-b border-[#E5E7EB]">
+              <div className="w-16 h-4 bg-[#D1D5DB] rounded" />
+              <div className="flex-1 h-4 bg-[#D1D5DB] rounded" />
+              <div className="w-24 h-4 bg-[#D1D5DB] rounded" />
             </div>
           ))}
         </div>
       ) : events.length === 0 ? (
         <div className="text-center py-24">
-          <p className="font-display text-2xl font-bold text-[#1C1C1E] mb-2">Nothing found.</p>
-          <p className="text-[#8A8480] text-sm mb-6">
+          <p className="font-display text-2xl font-bold text-[#1A1A1F] mb-2">Nothing found.</p>
+          <p className="text-[#9CA3AF] text-sm mb-6">
             Try different filters or{' '}
-            <button onClick={clearAll} className="text-[#7C3AED] font-medium hover:underline">clear all</button>
+            <button onClick={clearAll} className="text-[#6366F1] font-medium hover:underline">clear all</button>
           </p>
         </div>
       ) : viewMode === 'list' ? (
@@ -308,8 +308,8 @@ export function Browse() {
           {Object.entries(eventsByDate).map(([dateLabel, dateEvents]) => (
             <div key={dateLabel}>
               {/* Date header */}
-              <div className="sticky top-14 z-10 bg-[#F5F0E8] pt-4 pb-2 border-b-2 border-[#1C1C1E]">
-                <span className="text-xs font-bold tracking-[0.15em] uppercase text-[#1C1C1E]">
+              <div className="sticky top-14 z-10 bg-[#F7F7F5] pt-4 pb-2 border-b-2 border-[#1A1A1F]">
+                <span className="text-xs font-bold tracking-[0.15em] uppercase text-[#1A1A1F]">
                   {dateLabel}
                 </span>
               </div>
@@ -319,16 +319,16 @@ export function Browse() {
                 const { time } = formatEventDate(event.start_at)
                 const price = formatPrice(event)
                 const primaryCat = event.categories?.[0]
-                const catColor = primaryCat?.slug ? CATEGORY_COLORS[primaryCat.slug] : '#7C3AED'
+                const catColor = primaryCat?.slug ? CATEGORY_COLORS[primaryCat.slug] : '#6366F1'
 
                 return (
                   <Link
                     key={event.id}
                     to={`/events/${event.id}`}
-                    className="group flex items-baseline gap-4 py-3 border-b border-[#E2DDD6] hover:bg-white/50 transition-colors px-2 -mx-2"
+                    className="group flex items-baseline gap-4 py-3 border-b border-[#E5E7EB] hover:bg-white/50 transition-colors px-2 -mx-2"
                   >
                     {/* Time */}
-                    <span className="text-xs font-medium text-[#8A8480] w-16 flex-shrink-0 tabular-nums">
+                    <span className="text-xs font-medium text-[#9CA3AF] w-16 flex-shrink-0 tabular-nums">
                       {time}
                     </span>
 
@@ -337,11 +337,11 @@ export function Browse() {
 
                     {/* Title + venue */}
                     <div className="flex-1 min-w-0">
-                      <span className="text-sm font-semibold text-[#1C1C1E] group-hover:text-[#7C3AED] transition-colors">
+                      <span className="text-sm font-semibold text-[#1A1A1F] group-hover:text-[#6366F1] transition-colors">
                         {decodeEntities(event.title)}
                       </span>
                       {event.location_name && (
-                        <span className="text-xs text-[#8A8480] ml-3">
+                        <span className="text-xs text-[#9CA3AF] ml-3">
                           {event.location_name}
                         </span>
                       )}
@@ -355,12 +355,12 @@ export function Browse() {
                     )}
 
                     {/* Price */}
-                    <span className={`text-xs font-medium flex-shrink-0 w-16 text-right ${event.is_free === 1 ? 'text-[#2A7A4A]' : 'text-[#1C1C1E]'}`}>
+                    <span className={`text-xs font-medium flex-shrink-0 w-16 text-right ${event.is_free === 1 ? 'text-[#2A7A4A]' : 'text-[#1A1A1F]'}`}>
                       {price}
                     </span>
 
                     {/* Arrow */}
-                    <svg className="w-3 h-3 text-[#C4BEB4] group-hover:text-[#7C3AED] transition-colors flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <svg className="w-3 h-3 text-[#D1D5DB] group-hover:text-[#6366F1] transition-colors flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <polyline points="9 18 15 12 9 6"/>
                     </svg>
                   </Link>
@@ -376,34 +376,34 @@ export function Browse() {
             const { day, date, time } = formatEventDate(event.start_at)
             const price = formatPrice(event)
             const primaryCat = event.categories?.[0]
-            const catColor = primaryCat?.slug ? CATEGORY_COLORS[primaryCat.slug] : '#7C3AED'
+            const catColor = primaryCat?.slug ? CATEGORY_COLORS[primaryCat.slug] : '#6366F1'
 
             return (
               <Link
                 key={event.id}
                 to={`/events/${event.id}`}
-                className="group block py-4 border-b border-[#E2DDD6] hover:bg-white/30 transition-colors"
+                className="group block py-4 border-b border-[#E5E7EB] hover:bg-white/30 transition-colors"
               >
                 {/* Date row */}
                 <div className="flex items-center gap-2 mb-1.5">
-                  <span className="text-[10px] font-bold tracking-wider uppercase text-[#8A8480]">
+                  <span className="text-[10px] font-bold tracking-wider uppercase text-[#9CA3AF]">
                     {day} {date}
                   </span>
                   {time && (
                     <>
-                      <span className="text-[#D0C8BF]">·</span>
-                      <span className="text-[10px] text-[#8A8480]">{time}</span>
+                      <span className="text-[#D1D5DB]">·</span>
+                      <span className="text-[10px] text-[#9CA3AF]">{time}</span>
                     </>
                   )}
                 </div>
 
                 {/* Title */}
-                <h3 className="text-sm font-bold text-[#1C1C1E] leading-snug mb-1 group-hover:text-[#7C3AED] transition-colors">
+                <h3 className="text-sm font-bold text-[#1A1A1F] leading-snug mb-1 group-hover:text-[#6366F1] transition-colors">
                   {decodeEntities(event.title)}
                 </h3>
 
                 {/* Meta row */}
-                <div className="flex items-center gap-2 text-xs text-[#8A8480]">
+                <div className="flex items-center gap-2 text-xs text-[#9CA3AF]">
                   {primaryCat && (
                     <div className="flex items-center gap-1">
                       <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: catColor }} />
@@ -412,13 +412,13 @@ export function Browse() {
                   )}
                   {event.location_name && (
                     <>
-                      <span className="text-[#D0C8BF]">·</span>
+                      <span className="text-[#D1D5DB]">·</span>
                       <span className="truncate">{event.location_name}</span>
                     </>
                   )}
                   {price && (
                     <>
-                      <span className="text-[#D0C8BF]">·</span>
+                      <span className="text-[#D1D5DB]">·</span>
                       <span className={event.is_free === 1 ? 'text-[#2A7A4A] font-medium' : ''}>{price}</span>
                     </>
                   )}
@@ -435,7 +435,7 @@ export function Browse() {
           <button
             onClick={() => setPage(p => Math.max(0, p - 1))}
             disabled={page === 0}
-            className="px-4 py-2 border border-[#E2DDD6] rounded-[6px] text-sm font-medium text-[#1C1C1E] disabled:opacity-30 hover:border-[#1C1C1E] transition-colors font-sans"
+            className="px-4 py-2 border border-[#E5E7EB] rounded-[6px] text-sm font-medium text-[#1A1A1F] disabled:opacity-30 hover:border-[#1A1A1F] transition-colors font-sans"
           >
             ← Prev
           </button>
@@ -453,8 +453,8 @@ export function Browse() {
                 onClick={() => setPage(pageNum)}
                 className={`w-9 h-9 text-sm font-medium border rounded-[6px] transition-all font-sans ${
                   page === pageNum
-                    ? 'bg-[#1C1C1E] text-white border-[#1C1C1E]'
-                    : 'border-[#E2DDD6] text-[#1C1C1E] hover:border-[#1C1C1E]'
+                    ? 'bg-[#1A1A1F] text-white border-[#1A1A1F]'
+                    : 'border-[#E5E7EB] text-[#1A1A1F] hover:border-[#1A1A1F]'
                 }`}
               >
                 {pageNum + 1}
@@ -465,14 +465,14 @@ export function Browse() {
           <button
             onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
             disabled={page >= totalPages - 1}
-            className="px-4 py-2 border border-[#E2DDD6] rounded-[6px] text-sm font-medium text-[#1C1C1E] disabled:opacity-30 hover:border-[#1C1C1E] transition-colors font-sans"
+            className="px-4 py-2 border border-[#E5E7EB] rounded-[6px] text-sm font-medium text-[#1A1A1F] disabled:opacity-30 hover:border-[#1A1A1F] transition-colors font-sans"
           >
             Next →
           </button>
         </div>
       )}
 
-      <p className="text-center text-xs text-[#8A8480] mt-4 mb-8 font-sans">
+      <p className="text-center text-xs text-[#9CA3AF] mt-4 mb-8 font-sans">
         Showing {page * PAGE_SIZE + 1}–{Math.min((page + 1) * PAGE_SIZE, total)} of {total} events
       </p>
     </Layout>

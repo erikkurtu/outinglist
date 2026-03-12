@@ -15,9 +15,9 @@ function ListMiniCard({ list }: { list: List & { event_count?: number } }) {
   return (
     <Link
       to={`/lists/${list.id}`}
-      className="block bg-white rounded-xl border border-[#E8E8E4] overflow-hidden hover:border-[#7C3AED] transition-all group"
+      className="block bg-white rounded-xl border border-[#E8E8E4] overflow-hidden hover:border-[#6366F1] transition-all group"
     >
-      <div className="h-24 bg-gradient-to-br from-[#7C3AED] to-[#6D28D9] relative overflow-hidden">
+      <div className="h-24 bg-gradient-to-br from-[#6366F1] to-[#4F46E5] relative overflow-hidden">
         {list.cover_image_url && (
           <img src={list.cover_image_url} alt={list.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
         )}
@@ -28,7 +28,7 @@ function ListMiniCard({ list }: { list: List & { event_count?: number } }) {
         </div>
       </div>
       <div className="p-3">
-        <h4 className="font-semibold text-sm text-[#1A1A1A] line-clamp-1 group-hover:text-[#7C3AED] transition-colors">{list.title}</h4>
+        <h4 className="font-semibold text-sm text-[#1A1A1A] line-clamp-1 group-hover:text-[#6366F1] transition-colors">{list.title}</h4>
         <p className="text-xs text-[#94A3B8] mt-0.5">{list.event_count ?? 0} events</p>
       </div>
     </Link>
@@ -114,7 +114,7 @@ export function Profile() {
           <div className="flex items-start justify-between gap-4">
             <div className="flex items-center gap-4">
               {/* Avatar */}
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#7C3AED] to-[#6D28D9] flex items-center justify-center text-2xl font-bold text-white flex-shrink-0">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#6366F1] to-[#4F46E5] flex items-center justify-center text-2xl font-bold text-white flex-shrink-0">
                 {name[0].toUpperCase()}
               </div>
 
@@ -122,7 +122,7 @@ export function Profile() {
                 <div className="flex items-center gap-2 mb-1">
                   <h1 className="font-display text-2xl font-bold text-[#1A1A1A]">{name}</h1>
                   {isCurator && (
-                    <span className="inline-flex items-center gap-1 bg-[#F5F0FF] text-[#7C3AED] text-xs font-bold px-2.5 py-1 rounded-full border border-[#DDD6FE]">
+                    <span className="inline-flex items-center gap-1 bg-[#F5F0FF] text-[#6366F1] text-xs font-bold px-2.5 py-1 rounded-full border border-[#DDD6FE]">
                       ✓ Curator
                     </span>
                   )}
@@ -157,7 +157,7 @@ export function Profile() {
                   type="text"
                   value={displayName}
                   onChange={e => setDisplayName(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl border border-[#E8E8E4] text-[#1A1A1A] text-sm focus:outline-none focus:ring-2 focus:ring-[#7C3AED]"
+                  className="w-full px-3 py-2 rounded-xl border border-[#E8E8E4] text-[#1A1A1A] text-sm focus:outline-none focus:ring-2 focus:ring-[#6366F1]"
                 />
               </div>
               <div>
@@ -167,7 +167,7 @@ export function Profile() {
                   onChange={e => setBio(e.target.value)}
                   placeholder="Tell people about your taste in Atlanta events…"
                   rows={2}
-                  className="w-full px-3 py-2 rounded-xl border border-[#E8E8E4] text-[#1A1A1A] text-sm focus:outline-none focus:ring-2 focus:ring-[#7C3AED] resize-none"
+                  className="w-full px-3 py-2 rounded-xl border border-[#E8E8E4] text-[#1A1A1A] text-sm focus:outline-none focus:ring-2 focus:ring-[#6366F1] resize-none"
                 />
               </div>
               <Button variant="primary" size="sm" loading={saving} onClick={handleSaveProfile}>
@@ -182,7 +182,7 @@ export function Profile() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`text-center transition-colors ${activeTab === tab.id ? 'text-[#7C3AED]' : 'text-[#94A3B8] hover:text-[#1A1A1A]'}`}
+                className={`text-center transition-colors ${activeTab === tab.id ? 'text-[#6366F1]' : 'text-[#94A3B8] hover:text-[#1A1A1A]'}`}
               >
                 <div className="text-xl font-bold">{tab.count}</div>
                 <div className="text-xs font-medium">{tab.label}</div>
@@ -205,7 +205,7 @@ export function Profile() {
             >
               {tab.label}
               {tab.count > 0 && (
-                <span className={`ml-2 text-xs px-1.5 py-0.5 rounded-full ${activeTab === tab.id ? 'bg-[#7C3AED] text-white' : 'bg-[#E8E8E4] text-[#64748B]'}`}>
+                <span className={`ml-2 text-xs px-1.5 py-0.5 rounded-full ${activeTab === tab.id ? 'bg-[#6366F1] text-white' : 'bg-[#E8E8E4] text-[#64748B]'}`}>
                   {tab.count}
                 </span>
               )}
@@ -216,13 +216,13 @@ export function Profile() {
         {/* Tab Content */}
         {loading ? (
           <div className="flex justify-center py-12">
-            <div className="animate-spin w-6 h-6 border-2 border-[#7C3AED] border-t-transparent rounded-full" />
+            <div className="animate-spin w-6 h-6 border-2 border-[#6366F1] border-t-transparent rounded-full" />
           </div>
         ) : activeTab === 'events' ? (
           <div>
             {(profile?.my_events?.length ?? 0) === 0 ? (
               <div className="text-center py-16 bg-white rounded-2xl border border-dashed border-[#E8E8E4]">
-                <div className="w-10 h-10 mx-auto mb-3 text-[#C4BEB4]"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg></div>
+                <div className="w-10 h-10 mx-auto mb-3 text-[#D1D5DB]"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg></div>
                 <h3 className="font-display text-lg font-semibold mb-2">No events yet</h3>
                 <p className="text-[#94A3B8] mb-4">Create your first Atlanta event listing.</p>
                 <Link to="/events/new"><Button variant="primary">Create an Event</Button></Link>
@@ -237,7 +237,7 @@ export function Profile() {
           <div>
             {(profile?.public_lists?.length ?? 0) === 0 ? (
               <div className="text-center py-16 bg-white rounded-2xl border border-dashed border-[#E8E8E4]">
-                <div className="w-10 h-10 mx-auto mb-3 text-[#C4BEB4]"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
+                <div className="w-10 h-10 mx-auto mb-3 text-[#D1D5DB]"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
                 <h3 className="font-display text-lg font-semibold mb-2">No public lists yet</h3>
                 <p className="text-[#94A3B8] mb-4">Create and share your curated event collections.</p>
                 <Link to="/lists/new"><Button variant="primary">Create a List</Button></Link>
@@ -246,7 +246,7 @@ export function Profile() {
               <div>
                 <div className="flex justify-between items-center mb-4">
                   <p className="text-sm text-[#94A3B8]">Public lists visible to everyone</p>
-                  <Link to="/lists" className="text-sm text-[#7C3AED] font-medium hover:underline">View all lists →</Link>
+                  <Link to="/lists" className="text-sm text-[#6366F1] font-medium hover:underline">View all lists →</Link>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {profile?.public_lists?.map(list => <ListMiniCard key={list.id} list={list} />)}

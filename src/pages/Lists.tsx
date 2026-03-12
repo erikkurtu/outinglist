@@ -15,7 +15,7 @@ function ListCard({ list }: { list: List }) {
       className="group block bg-white rounded-[16px] overflow-hidden border border-[#E8E8E4] hover:border-transparent shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-all duration-200 hover:-translate-y-0.5"
     >
       {/* Cover / Preview Grid */}
-      <div className="relative h-40 bg-gradient-to-br from-[#7C3AED] to-[#6D28D9] overflow-hidden">
+      <div className="relative h-40 bg-gradient-to-br from-[#6366F1] to-[#4F46E5] overflow-hidden">
         {list.cover_image_url ? (
           <img src={list.cover_image_url} alt={list.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
         ) : list.preview_events && list.preview_events.length > 0 ? (
@@ -42,7 +42,7 @@ function ListCard({ list }: { list: List }) {
 
       {/* Content */}
       <div className="p-4">
-        <h3 className="font-display font-semibold text-[#1A1A1A] mb-1 group-hover:text-[#7C3AED] transition-colors line-clamp-1">
+        <h3 className="font-display font-semibold text-[#1A1A1A] mb-1 group-hover:text-[#6366F1] transition-colors line-clamp-1">
           {list.title}
         </h3>
         {list.description && (
@@ -58,7 +58,7 @@ function ListCard({ list }: { list: List }) {
           </span>
           {(list.like_count ?? 0) > 0 && (
             <span className="flex items-center gap-1">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="#7C3AED" stroke="#7C3AED" strokeWidth="2">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#6366F1" stroke="#6366F1" strokeWidth="2">
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
               </svg>
               {list.like_count}
@@ -88,7 +88,7 @@ export function Lists() {
     return (
       <Layout>
         <div className="text-center py-20">
-          <div className="w-12 h-12 mx-auto mb-4 text-[#C4BEB4]"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
+          <div className="w-12 h-12 mx-auto mb-4 text-[#D1D5DB]"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
           <h2 className="font-display text-2xl font-bold text-[#1A1A1A] mb-2">Your Lists</h2>
           <p className="text-[#94A3B8] mb-6">Sign in to create and manage your event lists.</p>
           <Link to="/sign-in">
@@ -119,7 +119,7 @@ export function Lists() {
 
       {loading ? (
         <div className="flex justify-center py-16">
-          <div className="animate-spin w-6 h-6 border-2 border-[#7C3AED] border-t-transparent rounded-full" />
+          <div className="animate-spin w-6 h-6 border-2 border-[#6366F1] border-t-transparent rounded-full" />
         </div>
       ) : lists.length === 0 ? (
         <div className="text-center py-20 bg-white rounded-2xl border border-[#E8E8E4] border-dashed">
