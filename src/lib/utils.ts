@@ -45,6 +45,22 @@ export function formatPrice(min?: number, max?: number): string {
   return ''
 }
 
+export function decodeEntities(str: string): string {
+  if (typeof document !== 'undefined') {
+    const txt = document.createElement('textarea')
+    txt.innerHTML = str
+    return txt.value
+  }
+  // Fallback for non-browser
+  return str
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
+    .replace(/&#39;/g, "'")
+}
+
 export function slugify(text: string): string {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 }

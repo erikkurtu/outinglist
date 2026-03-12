@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Layout } from '@/components/Layout'
-import { Badge } from '@/components/Badge'
 import { Button } from '@/components/Button'
 import { fetchEvent, getLikes, toggleLike } from '@/lib/api'
 import { formatDate, formatPrice } from '@/lib/utils'
@@ -9,12 +8,7 @@ import { useAuth } from '@/lib/auth'
 import { AddToListModal } from '@/components/AddToListModal'
 import { useToast } from '@/components/Toast'
 import type { Event } from '@/components/EventCard'
-
-// Gradient palette per category color
-function getGradient(color?: string): string {
-  const hex = color || '#7C3AED'
-  return `linear-gradient(135deg, ${hex}cc 0%, ${hex}55 50%, #1A1A2E 100%)`
-}
+import { CATEGORY_COLORS } from '@/components/icons/CategoryIcons'
 
 export function EventDetail() {
   const { id } = useParams<{ id: string }>()
@@ -73,10 +67,10 @@ export function EventDetail() {
   if (loading) return (
     <Layout>
       <div className="max-w-3xl mx-auto">
-        <div className="h-72 bg-[#E8E8E4] rounded-2xl animate-pulse mb-6" />
-        <div className="space-y-3">
-          <div className="h-8 bg-[#E8E8E4] rounded w-3/4 animate-pulse" />
-          <div className="h-4 bg-[#E8E8E4] rounded w-1/2 animate-pulse" />
+        <div className="space-y-3 pt-8">
+          <div className="h-3 bg-[#DDD5C8] rounded w-24 animate-pulse" />
+          <div className="h-8 bg-[#DDD5C8] rounded w-3/4 animate-pulse" />
+          <div className="h-4 bg-[#DDD5C8] rounded w-1/2 animate-pulse" />
         </div>
       </div>
     </Layout>
@@ -85,182 +79,186 @@ export function EventDetail() {
   if (error || !event) return (
     <Layout>
       <div className="text-center py-20">
-        <div className="text-5xl mb-4">😕</div>
-        <h2 className="font-display text-xl font-bold mb-2">Event not found</h2>
-        <Link to="/browse" className="text-[#7C3AED] hover:underline">← Back to browse</Link>
+        <h2 className="font-display text-xl font-bold mb-2 text-[#1C1C1E]">Event not found</h2>
+        <Link to="/browse" className="text-[#7C3AED] hover:underline text-sm">← Back to browse</Link>
       </div>
     </Layout>
   )
 
   const primaryCat = event.categories?.[0]
+  const catColor = primaryCat?.slug ? CATEGORY_COLORS[primaryCat.slug] : '#7C3AED'
+  const isFree = event.is_free === 1
+  const priceLabel = isFree ? 'Free' : formatPrice(event.price_min, event.price_max)
+
+  // Decode HTML entities from scraped data
+  function decodeEntities(str: string) {
+    const txt = document.createElement('textarea')
+    txt.innerHTML = str
+    return txt.value
+  }
+
+  const title = decodeEntities(event.title)
+  const description = event.description ? decodeEntities(event.description) : null
 
   return (
     <Layout>
       <div className="max-w-3xl mx-auto">
-        <Link to="/browse" className="inline-flex items-center gap-1 text-sm text-[#94A3B8] hover:text-[#1A1A1A] mb-6 transition-colors">
-          ← Back to events
+        <Link to="/browse" className="inline-flex items-center gap-1.5 text-sm text-[#8A8480] hover:text-[#1C1C1E] mb-8 transition-colors">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+          Back to events
         </Link>
 
-        {/* Hero image/gradient */}
-        <div
-          className="rounded-2xl overflow-hidden mb-6 h-72 flex items-end p-6 relative"
-          style={{ background: event.image_url ? undefined : getGradient(primaryCat?.color) }}
-        >
-          {event.image_url ? (
-            <img
-              src={event.image_url}
-              alt={event.title}
-              className="absolute inset-0 w-full h-full object-cover"
-              onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
-            />
-          ) : (
-            <div className="absolute top-6 right-6 text-7xl opacity-60 select-none">
-              {primaryCat?.icon || '🎉'}
-            </div>
-          )}
-
-          {/* Overlay bottom gradient for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl" />
-
-          {/* Hero bottom: FREE badge + price */}
-          <div className="relative z-10 flex items-center gap-2">
-            {event.is_free === 1 && (
-              <span className="bg-[#00D4AA] text-white text-sm font-bold px-3 py-1 rounded-full">FREE</span>
-            )}
-            {event.is_free !== 1 && event.price_min !== null && event.price_min !== undefined && (
-              <span className="bg-white/90 text-[#1A1A1A] text-sm font-bold px-3 py-1 rounded-full">
-                {formatPrice(event.price_min, event.price_max)}
+        {/* Category + date header */}
+        <div className="flex items-center gap-3 mb-4">
+          {primaryCat && (
+            <Link to={`/browse?category=${primaryCat.slug}`} className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
+              <span className="w-2 h-2 rounded-full" style={{ backgroundColor: catColor }} />
+              <span className="text-xs font-semibold tracking-wider uppercase" style={{ color: catColor }}>
+                {primaryCat.name}
               </span>
-            )}
-          </div>
-        </div>
-
-        {/* Categories */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {event.categories?.map(cat => (
-            <Link key={cat.id} to={`/browse?category=${cat.slug}`}>
-              <Badge label={cat.name} icon={cat.icon} color={cat.color} />
             </Link>
-          ))}
+          )}
+          {event.categories && event.categories.length > 1 && (
+            event.categories.slice(1).map(cat => (
+              <Link key={cat.id} to={`/browse?category=${cat.slug}`} className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
+                <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: CATEGORY_COLORS[cat.slug] || '#8A8480' }} />
+                <span className="text-[10px] font-medium tracking-wider uppercase text-[#8A8480]">
+                  {cat.name}
+                </span>
+              </Link>
+            ))
+          )}
         </div>
 
         {/* Title */}
-        <h1 className="font-display text-3xl font-bold text-[#1A1A1A] mb-5 leading-tight">{event.title}</h1>
+        <h1 className="font-display text-3xl md:text-4xl font-black text-[#1C1C1E] mb-6 leading-tight">
+          {title}
+        </h1>
 
-        {/* Info grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-          <div className="bg-white rounded-xl p-4 border border-[#E8E8E4] flex items-start gap-3">
-            <span className="text-xl mt-0.5">📅</span>
-            <div>
-              <div className="text-xs text-[#94A3B8] font-medium mb-0.5">DATE & TIME</div>
-              <div className="font-semibold text-[#1A1A1A] text-sm">{formatDate(event.start_at)}</div>
-              {event.end_at && (
-                <div className="text-xs text-[#94A3B8] mt-0.5">Until {formatDate(event.end_at)}</div>
-              )}
-            </div>
+        {/* Key info row */}
+        <div className="flex flex-wrap gap-6 mb-8 pb-8 border-b border-[#E2DDD6]">
+          {/* Date & Time */}
+          <div>
+            <p className="text-[10px] font-semibold tracking-widest uppercase text-[#8A8480] mb-1">When</p>
+            <p className="text-sm font-semibold text-[#1C1C1E]">{formatDate(event.start_at)}</p>
+            {event.end_at && (
+              <p className="text-xs text-[#8A8480] mt-0.5">Until {formatDate(event.end_at)}</p>
+            )}
           </div>
 
+          {/* Location */}
           {event.location_name && (
-            <div className="bg-white rounded-xl p-4 border border-[#E8E8E4] flex items-start gap-3">
-              <span className="text-xl mt-0.5">📍</span>
-              <div>
-                <div className="text-xs text-[#94A3B8] font-medium mb-0.5">LOCATION</div>
-                <div className="font-semibold text-[#1A1A1A] text-sm">{event.location_name}</div>
-                {event.location_address && (
-                  <a
-                    href={`https://maps.google.com/?q=${encodeURIComponent(event.location_address)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs text-[#7C3AED] hover:underline mt-0.5 block"
-                  >
-                    {event.location_address}
-                  </a>
-                )}
-              </div>
+            <div>
+              <p className="text-[10px] font-semibold tracking-widest uppercase text-[#8A8480] mb-1">Where</p>
+              <p className="text-sm font-semibold text-[#1C1C1E]">{event.location_name}</p>
+              {event.location_address && (
+                <a
+                  href={`https://maps.google.com/?q=${encodeURIComponent(event.location_address)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-[#7C3AED] hover:underline mt-0.5 block"
+                >
+                  View on map
+                </a>
+              )}
             </div>
           )}
 
-          {event.is_free !== 1 && event.price_min !== null && event.price_min !== undefined && (
-            <div className="bg-white rounded-xl p-4 border border-[#E8E8E4] flex items-start gap-3">
-              <span className="text-xl mt-0.5">💰</span>
-              <div>
-                <div className="text-xs text-[#94A3B8] font-medium mb-0.5">PRICE</div>
-                <div className="font-semibold text-[#7C3AED] text-sm">{formatPrice(event.price_min, event.price_max)}</div>
-              </div>
+          {/* Price */}
+          {priceLabel && (
+            <div>
+              <p className="text-[10px] font-semibold tracking-widest uppercase text-[#8A8480] mb-1">Price</p>
+              <p className={`text-sm font-semibold ${isFree ? 'text-[#2A7A4A]' : 'text-[#1C1C1E]'}`}>
+                {priceLabel}
+              </p>
             </div>
           )}
 
+          {/* Source */}
           {(event.source_type === 'external' || event.source_type === 'scraped') && event.source_platform && (
-            <div className="bg-white rounded-xl p-4 border border-[#E8E8E4] flex items-start gap-3">
-              <span className="text-xl mt-0.5">🔗</span>
-              <div>
-                <div className="text-xs text-[#94A3B8] font-medium mb-0.5">SOURCE</div>
-                <div className="font-semibold text-[#7C3AED] text-sm capitalize">{event.source_platform}</div>
-              </div>
+            <div>
+              <p className="text-[10px] font-semibold tracking-widest uppercase text-[#8A8480] mb-1">Source</p>
+              <p className="text-sm font-medium text-[#8A8480] capitalize">{event.source_platform}</p>
             </div>
           )}
         </div>
 
+        {/* Image — only if event has one */}
+        {event.image_url && (
+          <div className="mb-8 overflow-hidden rounded-[6px]">
+            <img
+              src={event.image_url}
+              alt={title}
+              className="w-full h-auto max-h-96 object-cover"
+              onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
+            />
+          </div>
+        )}
+
         {/* Description */}
-        {event.description && (
+        {description && (
           <div className="mb-8">
-            <h2 className="font-display text-lg font-semibold mb-3 text-[#1A1A1A]">About this event</h2>
-            <p className="text-[#1A1A1A]/80 leading-relaxed whitespace-pre-wrap text-sm">{event.description}</p>
+            <h2 className="text-xs font-semibold tracking-widest uppercase text-[#8A8480] mb-3">About</h2>
+            <p className="text-sm text-[#1C1C1E]/80 leading-relaxed whitespace-pre-wrap">{description}</p>
           </div>
         )}
 
         {/* Action buttons */}
-        <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-[#E8E8E4]">
+        <div className="flex flex-wrap items-center gap-3 pt-6 border-t border-[#E2DDD6]">
           {event.source_url && (
-            <a href={event.source_url} target="_blank" rel="noopener noreferrer" className="flex-1 sm:flex-none">
-              <Button variant="primary" size="lg" className="w-full sm:w-auto">
-                🎟️ Get Tickets / RSVP
+            <a href={event.source_url} target="_blank" rel="noopener noreferrer">
+              <Button variant="primary" size="lg">
+                Get Tickets / RSVP
               </Button>
             </a>
           )}
 
-          {/* Like button */}
           <button
             onClick={handleLike}
             disabled={!user || likeLoading}
             title={user ? (liked ? 'Unlike' : 'Like this event') : 'Sign in to like'}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all border ${
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-[6px] text-sm font-medium transition-all border ${
               liked
-                ? 'bg-red-50 text-red-500 border-red-200 hover:bg-red-100'
-                : 'bg-white text-[#94A3B8] border-[#E8E8E4] hover:border-red-200 hover:text-red-400'
+                ? 'bg-[#7C3AED]/10 text-[#7C3AED] border-[#7C3AED]/30'
+                : 'bg-white text-[#8A8480] border-[#E2DDD6] hover:border-[#7C3AED] hover:text-[#7C3AED]'
             } disabled:opacity-50`}
           >
-            <span className="text-base">{liked ? '❤️' : '🤍'}</span>
-            <span>{likeCount > 0 ? likeCount : ''} {liked ? 'Liked' : 'Like'}</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill={liked ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
+            {likeCount > 0 ? likeCount : ''} {liked ? 'Liked' : 'Like'}
           </button>
 
-          {/* Share button */}
           <button
             onClick={handleShare}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all border bg-white text-[#64748B] border-[#E8E8E4] hover:border-[#94A3B8]"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-[6px] text-sm font-medium transition-all border bg-white text-[#8A8480] border-[#E2DDD6] hover:border-[#1C1C1E] hover:text-[#1C1C1E]"
           >
-            <span>{copied ? '✅' : '🔗'}</span>
-            <span>{copied ? 'Link copied!' : 'Share'}</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/>
+            </svg>
+            {copied ? 'Copied!' : 'Share'}
           </button>
 
-          {/* Add to List button */}
           <button
             onClick={() => setShowAddToList(true)}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all border bg-white text-[#64748B] border-[#E8E8E4] hover:border-[#7C3AED] hover:text-[#7C3AED]"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-[6px] text-sm font-medium transition-all border bg-white text-[#8A8480] border-[#E2DDD6] hover:border-[#7C3AED] hover:text-[#7C3AED]"
           >
-            <span>📋</span>
-            <span>Add to List</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            Add to List
           </button>
 
           {!user && (
-            <Link to="/sign-in" className="text-sm text-[#94A3B8] hover:text-[#7C3AED] transition-colors">
+            <Link to="/sign-in" className="text-xs text-[#8A8480] hover:text-[#7C3AED] transition-colors">
               Sign in to like events
             </Link>
           )}
         </div>
       </div>
 
-      {/* Add to List Modal */}
       {showAddToList && id && (
         <AddToListModal eventId={id} onClose={() => setShowAddToList(false)} />
       )}

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Layout } from '@/components/Layout'
 import type { Event } from '@/components/EventCard'
 import { CATEGORY_ICONS, CATEGORY_COLORS } from '@/components/icons/CategoryIcons'
+import { decodeEntities } from '@/lib/utils'
 import { fetchEvents } from '@/lib/api'
 
 const FEATURED_CATEGORIES = [
@@ -35,14 +36,14 @@ export function Home() {
 
   return (
     <Layout fullWidth noPad>
-      {/* === HERO: Bold typographic section === */}
-      <section className="relative min-h-[70vh] flex flex-col justify-end bg-[#1C1C1E] overflow-hidden">
+      {/* === HERO: Compact typographic section === */}
+      <section className="relative min-h-[40vh] flex flex-col justify-end bg-[#1C1C1E] overflow-hidden">
         {/* Subtle gradient accent */}
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#7C3AED]/8 to-transparent" />
         <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-tr from-[#7C3AED]/5 to-transparent" />
 
         {/* Hero content */}
-        <div className="relative max-w-6xl mx-auto px-6 pb-16 pt-32 w-full">
+        <div className="relative max-w-6xl mx-auto px-6 pb-10 pt-20 w-full">
           {/* Tag */}
           <div className="flex items-center gap-2 mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-[#7C3AED] animate-pulse" />
@@ -52,12 +53,12 @@ export function Home() {
           </div>
 
           {/* Big headline */}
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-black text-white leading-none mb-6 max-w-3xl">
+          <h1 className="font-display text-4xl md:text-5xl font-black text-white leading-none mb-4 max-w-2xl">
             Your city.<br />
             <em className="not-italic text-[#7C3AED]">This weekend.</em>
           </h1>
 
-          <p className="text-white/50 text-lg max-w-lg mb-8 leading-relaxed font-sans">
+          <p className="text-white/50 text-sm max-w-lg mb-6 leading-relaxed font-sans">
             Concerts, markets, art shows, block parties — everything happening in Atlanta, 
             curated by people who actually go out.
           </p>
@@ -166,7 +167,7 @@ export function Home() {
 
                     {/* Title */}
                     <span className="flex-1 text-sm font-semibold text-[#1C1C1E] group-hover:text-[#7C3AED] transition-colors truncate">
-                      {ev.title}
+                      {decodeEntities(ev.title)}
                     </span>
 
                     {/* Venue */}
@@ -254,7 +255,7 @@ export function Home() {
                     </span>
                     <span className="w-2 h-2 rounded-full flex-shrink-0 mt-1" style={{ backgroundColor: catColor }} />
                     <span className="flex-1 text-sm font-semibold text-[#1C1C1E] group-hover:text-[#7C3AED] transition-colors truncate">
-                      {ev.title}
+                      {decodeEntities(ev.title)}
                     </span>
                     {ev.location_name && (
                       <span className="text-xs text-[#8A8480] flex-shrink-0 hidden sm:inline">{ev.location_name}</span>

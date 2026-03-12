@@ -4,6 +4,7 @@ import { Layout } from '@/components/Layout'
 import { fetchEvents, fetchCategories, type Category, type EventFilters, type TimeOfDay } from '@/lib/api'
 import type { Event } from '@/components/EventCard'
 import { CATEGORY_ICONS, CATEGORY_COLORS } from '@/components/icons/CategoryIcons'
+import { decodeEntities } from '@/lib/utils'
 
 const PAGE_SIZE = 25
 
@@ -337,7 +338,7 @@ export function Browse() {
                     {/* Title + venue */}
                     <div className="flex-1 min-w-0">
                       <span className="text-sm font-semibold text-[#1C1C1E] group-hover:text-[#7C3AED] transition-colors">
-                        {event.title}
+                        {decodeEntities(event.title)}
                       </span>
                       {event.location_name && (
                         <span className="text-xs text-[#8A8480] ml-3">
@@ -398,7 +399,7 @@ export function Browse() {
 
                 {/* Title */}
                 <h3 className="text-sm font-bold text-[#1C1C1E] leading-snug mb-1 group-hover:text-[#7C3AED] transition-colors">
-                  {event.title}
+                  {decodeEntities(event.title)}
                 </h3>
 
                 {/* Meta row */}

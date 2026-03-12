@@ -21,7 +21,7 @@ export function Badge({ label, color = '#7C3AED', icon, className, onClick }: Ba
       style={{ backgroundColor: bg, color }}
       onClick={onClick}
     >
-      {icon && <span>{icon}</span>}
+      <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: color }} />
       {label}
     </span>
   )
