@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.outinglist.scrapers</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/opt/homebrew/bin/node</string>
+        <string>/Users/shmergle/.openclaw/workspace/outinglist/scrapers/run-all.js</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/shmergle/.openclaw/workspace/outinglist</string>
+
+    <!-- Run every 6 hours -->
+    <key>StartInterval</key>
+    <integer>21600</integer>
+
+    <key>RunAtLoad</key>
+    <false/>
+
+    <key>StandardOutPath</key>
+    <string>/Users/shmergle/Library/Logs/outinglist-scrapers.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/shmergle/Library/Logs/outinglist-scrapers-error.log</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+        <key>NODE_ENV</key>
+        <string>production</string>
+    </dict>
+</dict>
+</plist>

@@ -190,12 +190,12 @@ export function EventDetail() {
             </div>
           )}
 
-          {event.source_type === 'external' && event.source_platform && (
+          {(event.source_type === 'external' || event.source_type === 'scraped') && event.source_platform && (
             <div className="bg-white rounded-xl p-4 border border-[#E8E8E4] flex items-start gap-3">
               <span className="text-xl mt-0.5">🔗</span>
               <div>
                 <div className="text-xs text-[#94A3B8] font-medium mb-0.5">SOURCE</div>
-                <div className="font-semibold text-[#1A1A1A] text-sm capitalize">{event.source_platform}</div>
+                <div className="font-semibold text-[#7C3AED] text-sm capitalize">{event.source_platform}</div>
               </div>
             </div>
           )}
