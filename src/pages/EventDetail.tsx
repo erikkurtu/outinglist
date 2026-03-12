@@ -80,13 +80,13 @@ export function EventDetail() {
     <Layout>
       <div className="text-center py-20">
         <h2 className="font-display text-xl font-bold mb-2 text-[#1A1A1F]">Event not found</h2>
-        <Link to="/browse" className="text-[#6366F1] hover:underline text-sm">← Back to browse</Link>
+        <Link to="/browse" className="text-[#5B5BD6] hover:underline text-sm">← Back to browse</Link>
       </div>
     </Layout>
   )
 
   const primaryCat = event.categories?.[0]
-  const catColor = primaryCat?.slug ? CATEGORY_COLORS[primaryCat.slug] : '#6366F1'
+  const catColor = primaryCat?.slug ? CATEGORY_COLORS[primaryCat.slug] : '#5B5BD6'
   const isFree = event.is_free === 1
   const priceLabel = isFree ? 'Free' : formatPrice(event.price_min, event.price_max)
 
@@ -158,7 +158,7 @@ export function EventDetail() {
                   href={`https://maps.google.com/?q=${encodeURIComponent(event.location_address)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-[#6366F1] hover:underline mt-0.5 block"
+                  className="text-xs text-[#5B5BD6] hover:underline mt-0.5 block"
                 >
                   View on map
                 </a>
@@ -221,8 +221,8 @@ export function EventDetail() {
             title={user ? (liked ? 'Unlike' : 'Like this event') : 'Sign in to like'}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-[6px] text-sm font-medium transition-all border ${
               liked
-                ? 'bg-[#6366F1]/10 text-[#6366F1] border-[#6366F1]/30'
-                : 'bg-white text-[#9CA3AF] border-[#E5E7EB] hover:border-[#6366F1] hover:text-[#6366F1]'
+                ? 'bg-[#5B5BD6]/10 text-[#5B5BD6] border-[#5B5BD6]/30'
+                : 'bg-white text-[#9CA3AF] border-[#E5E7EB] hover:border-[#5B5BD6] hover:text-[#5B5BD6]'
             } disabled:opacity-50`}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill={liked ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2">
@@ -243,7 +243,7 @@ export function EventDetail() {
 
           <button
             onClick={() => setShowAddToList(true)}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-[6px] text-sm font-medium transition-all border bg-white text-[#9CA3AF] border-[#E5E7EB] hover:border-[#6366F1] hover:text-[#6366F1]"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-[6px] text-sm font-medium transition-all border bg-white text-[#9CA3AF] border-[#E5E7EB] hover:border-[#5B5BD6] hover:text-[#5B5BD6]"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
@@ -252,7 +252,7 @@ export function EventDetail() {
           </button>
 
           {!user && (
-            <Link to="/sign-in" className="text-xs text-[#9CA3AF] hover:text-[#6366F1] transition-colors">
+            <Link to="/sign-in" className="text-xs text-[#9CA3AF] hover:text-[#5B5BD6] transition-colors">
               Sign in to like events
             </Link>
           )}

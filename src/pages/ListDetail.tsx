@@ -83,7 +83,7 @@ export function ListDetail() {
     return (
       <Layout>
         <div className="flex justify-center py-20">
-          <div className="animate-spin w-6 h-6 border-2 border-[#6366F1] border-t-transparent rounded-full" />
+          <div className="animate-spin w-6 h-6 border-2 border-[#5B5BD6] border-t-transparent rounded-full" />
         </div>
       </Layout>
     )
@@ -124,7 +124,7 @@ export function ListDetail() {
             <img src={list.cover_image_url} alt={list.title} className="w-full h-full object-cover" />
           </div>
         ) : (
-          <div className="h-40 bg-gradient-to-br from-[#6366F1] to-[#4F46E5] flex items-center justify-center">
+          <div className="h-40 bg-gradient-to-br from-[#5B5BD6] to-[#4F46E5] flex items-center justify-center">
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="1.5"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
           </div>
         )}
@@ -145,12 +145,12 @@ export function ListDetail() {
 
               {/* Curator info */}
               <div className="flex items-center gap-2 text-sm text-[#94A3B8]">
-                <div className="w-6 h-6 rounded-full bg-[#6366F1] flex items-center justify-center text-white text-xs font-bold">
+                <div className="w-6 h-6 rounded-full bg-[#5B5BD6] flex items-center justify-center text-white text-xs font-bold">
                   {curatorName[0].toUpperCase()}
                 </div>
                 <span>by <span className="text-[#1A1A1A] font-medium">{curatorName}</span></span>
                 {isCurator && (
-                  <span className="inline-flex items-center gap-1 bg-[#F5F0FF] text-[#6366F1] text-xs font-semibold px-2 py-0.5 rounded-full">
+                  <span className="inline-flex items-center gap-1 bg-[#F5F0FF] text-[#5B5BD6] text-xs font-semibold px-2 py-0.5 rounded-full">
                     ✓ Curator
                   </span>
                 )}
@@ -164,8 +164,8 @@ export function ListDetail() {
                 onClick={handleLike}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-semibold transition-all ${
                   liked
-                    ? 'bg-[#6366F1] border-[#6366F1] text-white'
-                    : 'bg-white border-[#E8E8E4] text-[#64748B] hover:border-[#6366F1] hover:text-[#6366F1]'
+                    ? 'bg-[#5B5BD6] border-[#5B5BD6] text-white'
+                    : 'bg-white border-[#E8E8E4] text-[#64748B] hover:border-[#5B5BD6] hover:text-[#5B5BD6]'
                 }`}
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill={liked ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2">
@@ -230,7 +230,7 @@ export function ListDetail() {
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-display text-xl font-semibold text-[#1A1A1A]">Events in this list</h2>
             {isOwner && (
-              <Link to="/browse" className="text-sm text-[#6366F1] font-medium hover:underline">
+              <Link to="/browse" className="text-sm text-[#5B5BD6] font-medium hover:underline">
                 + Add more events
               </Link>
             )}

@@ -81,14 +81,14 @@ export function CreateList() {
           {/* Title */}
           <div>
             <label className="block text-sm font-semibold text-[#1A1A1A] mb-1.5">
-              List Name <span className="text-[#6366F1]">*</span>
+              List Name <span className="text-[#5B5BD6]">*</span>
             </label>
             <input
               type="text"
               value={title}
               onChange={e => { setTitle(e.target.value); setErrors(prev => ({ ...prev, title: '' })) }}
               placeholder="e.g. Best Date Night Spots, Family Weekend Picks…"
-              className={`w-full px-4 py-3 rounded-[12px] border text-[#1A1A1A] placeholder:text-[#CBD5E1] focus:outline-none focus:ring-2 focus:ring-[#6366F1] transition ${errors.title ? 'border-red-400' : 'border-[#E8E8E4]'}`}
+              className={`w-full px-4 py-3 rounded-[12px] border text-[#1A1A1A] placeholder:text-[#CBD5E1] focus:outline-none focus:ring-2 focus:ring-[#5B5BD6] transition ${errors.title ? 'border-red-400' : 'border-[#E8E8E4]'}`}
             />
             {errors.title && <p className="text-red-500 text-sm mt-1">{errors.title}</p>}
           </div>
@@ -101,7 +101,7 @@ export function CreateList() {
               onChange={e => setDescription(e.target.value)}
               placeholder="What's this list about? Give people a reason to follow it."
               rows={3}
-              className="w-full px-4 py-3 rounded-[12px] border border-[#E8E8E4] text-[#1A1A1A] placeholder:text-[#CBD5E1] focus:outline-none focus:ring-2 focus:ring-[#6366F1] transition resize-none"
+              className="w-full px-4 py-3 rounded-[12px] border border-[#E8E8E4] text-[#1A1A1A] placeholder:text-[#CBD5E1] focus:outline-none focus:ring-2 focus:ring-[#5B5BD6] transition resize-none"
             />
           </div>
 
@@ -113,7 +113,7 @@ export function CreateList() {
               value={coverImageUrl}
               onChange={e => setCoverImageUrl(e.target.value)}
               placeholder="https://..."
-              className="w-full px-4 py-3 rounded-[12px] border border-[#E8E8E4] text-[#1A1A1A] placeholder:text-[#CBD5E1] focus:outline-none focus:ring-2 focus:ring-[#6366F1] transition"
+              className="w-full px-4 py-3 rounded-[12px] border border-[#E8E8E4] text-[#1A1A1A] placeholder:text-[#CBD5E1] focus:outline-none focus:ring-2 focus:ring-[#5B5BD6] transition"
             />
             {coverImageUrl && (
               <div className="mt-3 rounded-[12px] overflow-hidden h-40 bg-[#F8F8F6]">
@@ -132,7 +132,7 @@ export function CreateList() {
             <button
               type="button"
               onClick={() => setIsPublic(!isPublic)}
-              className={`relative flex-shrink-0 w-12 h-6 rounded-full transition-all duration-200 ${isPublic ? 'bg-[#6366F1]' : 'bg-[#CBD5E1]'}`}
+              className={`relative flex-shrink-0 w-12 h-6 rounded-full transition-all duration-200 ${isPublic ? 'bg-[#5B5BD6]' : 'bg-[#CBD5E1]'}`}
             >
               <span className={`absolute top-1 w-4 h-4 bg-white rounded-full shadow transition-all duration-200 ${isPublic ? 'left-7' : 'left-1'}`} />
             </button>

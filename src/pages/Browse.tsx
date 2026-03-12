@@ -142,7 +142,7 @@ export function Browse() {
             value={search}
             onChange={e => handleSearchChange(e.target.value)}
             placeholder="Search events, artists, venues..."
-            className="w-full pl-11 pr-4 py-3 bg-white border border-[#E5E7EB] rounded-[6px] text-sm text-[#1A1A1F] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#6366F1] transition-colors font-sans"
+            className="w-full pl-11 pr-4 py-3 bg-white border border-[#E5E7EB] rounded-[6px] text-sm text-[#1A1A1F] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#5B5BD6] transition-colors font-sans"
           />
           {search && (
             <button onClick={() => { setSearch(''); setDebouncedSearch(''); setPage(0) }}
@@ -164,7 +164,7 @@ export function Browse() {
           </svg>
           Filters
           {hasActiveFilters && (
-            <span className="w-4 h-4 rounded-full bg-[#6366F1] text-white text-[10px] flex items-center justify-center">
+            <span className="w-4 h-4 rounded-full bg-[#5B5BD6] text-white text-[10px] flex items-center justify-center">
               {(activeCategories.length > 0 ? 1 : 0) + (freeOnly ? 1 : 0) + (dateFrom || dateTo ? 1 : 0) + (timeOfDay ? 1 : 0)}
             </span>
           )}
@@ -203,7 +203,7 @@ export function Browse() {
             <div className="flex flex-wrap gap-2">
               {categories.map(cat => {
                 const Icon = CATEGORY_ICONS[cat.slug]
-                const color = CATEGORY_COLORS[cat.slug] || cat.color || '#6366F1'
+                const color = CATEGORY_COLORS[cat.slug] || cat.color || '#5B5BD6'
                 const isActive = activeCategories.includes(cat.slug)
                 return (
                   <button
@@ -249,17 +249,17 @@ export function Browse() {
               <p className="text-xs font-semibold tracking-widest uppercase text-[#9CA3AF] mb-2">Date Range</p>
               <div className="flex items-center gap-2">
                 <input type="date" value={dateFrom} onChange={e => { setDateFrom(e.target.value); setPage(0) }}
-                  className="px-3 py-1.5 text-xs border border-[#E5E7EB] rounded-[4px] text-[#1A1A1F] focus:outline-none focus:border-[#6366F1] font-sans" />
+                  className="px-3 py-1.5 text-xs border border-[#E5E7EB] rounded-[4px] text-[#1A1A1F] focus:outline-none focus:border-[#5B5BD6] font-sans" />
                 <span className="text-[#9CA3AF] text-xs">to</span>
                 <input type="date" value={dateTo} min={dateFrom} onChange={e => { setDateTo(e.target.value); setPage(0) }}
-                  className="px-3 py-1.5 text-xs border border-[#E5E7EB] rounded-[4px] text-[#1A1A1F] focus:outline-none focus:border-[#6366F1] font-sans" />
+                  className="px-3 py-1.5 text-xs border border-[#E5E7EB] rounded-[4px] text-[#1A1A1F] focus:outline-none focus:border-[#5B5BD6] font-sans" />
               </div>
             </div>
 
             <label className="flex items-center gap-2 cursor-pointer">
               <div
                 onClick={() => { setFreeOnly(!freeOnly); setPage(0) }}
-                className={`w-8 h-4 rounded-full transition-all relative cursor-pointer ${freeOnly ? 'bg-[#6366F1]' : 'bg-[#D1D5DB]'}`}
+                className={`w-8 h-4 rounded-full transition-all relative cursor-pointer ${freeOnly ? 'bg-[#5B5BD6]' : 'bg-[#D1D5DB]'}`}
               >
                 <div className={`absolute top-0.5 w-3 h-3 bg-white rounded-full shadow transition-all ${freeOnly ? 'left-4' : 'left-0.5'}`} />
               </div>
@@ -267,7 +267,7 @@ export function Browse() {
             </label>
 
             {hasActiveFilters && (
-              <button onClick={clearAll} className="text-xs text-[#9CA3AF] hover:text-[#6366F1] underline transition-colors font-sans ml-auto">
+              <button onClick={clearAll} className="text-xs text-[#9CA3AF] hover:text-[#5B5BD6] underline transition-colors font-sans ml-auto">
                 Clear all
               </button>
             )}
@@ -299,7 +299,7 @@ export function Browse() {
           <p className="font-display text-2xl font-bold text-[#1A1A1F] mb-2">Nothing found.</p>
           <p className="text-[#9CA3AF] text-sm mb-6">
             Try different filters or{' '}
-            <button onClick={clearAll} className="text-[#6366F1] font-medium hover:underline">clear all</button>
+            <button onClick={clearAll} className="text-[#5B5BD6] font-medium hover:underline">clear all</button>
           </p>
         </div>
       ) : viewMode === 'list' ? (
@@ -319,7 +319,7 @@ export function Browse() {
                 const { time } = formatEventDate(event.start_at)
                 const price = formatPrice(event)
                 const primaryCat = event.categories?.[0]
-                const catColor = primaryCat?.slug ? CATEGORY_COLORS[primaryCat.slug] : '#6366F1'
+                const catColor = primaryCat?.slug ? CATEGORY_COLORS[primaryCat.slug] : '#5B5BD6'
 
                 return (
                   <Link
@@ -337,7 +337,7 @@ export function Browse() {
 
                     {/* Title + venue */}
                     <div className="flex-1 min-w-0">
-                      <span className="text-sm font-semibold text-[#1A1A1F] group-hover:text-[#6366F1] transition-colors">
+                      <span className="text-sm font-semibold text-[#1A1A1F] group-hover:text-[#5B5BD6] transition-colors">
                         {decodeEntities(event.title)}
                       </span>
                       {event.location_name && (
@@ -360,7 +360,7 @@ export function Browse() {
                     </span>
 
                     {/* Arrow */}
-                    <svg className="w-3 h-3 text-[#D1D5DB] group-hover:text-[#6366F1] transition-colors flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <svg className="w-3 h-3 text-[#D1D5DB] group-hover:text-[#5B5BD6] transition-colors flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <polyline points="9 18 15 12 9 6"/>
                     </svg>
                   </Link>
@@ -376,7 +376,7 @@ export function Browse() {
             const { day, date, time } = formatEventDate(event.start_at)
             const price = formatPrice(event)
             const primaryCat = event.categories?.[0]
-            const catColor = primaryCat?.slug ? CATEGORY_COLORS[primaryCat.slug] : '#6366F1'
+            const catColor = primaryCat?.slug ? CATEGORY_COLORS[primaryCat.slug] : '#5B5BD6'
 
             return (
               <Link
@@ -398,7 +398,7 @@ export function Browse() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-sm font-bold text-[#1A1A1F] leading-snug mb-1 group-hover:text-[#6366F1] transition-colors">
+                <h3 className="text-sm font-bold text-[#1A1A1F] leading-snug mb-1 group-hover:text-[#5B5BD6] transition-colors">
                   {decodeEntities(event.title)}
                 </h3>
 

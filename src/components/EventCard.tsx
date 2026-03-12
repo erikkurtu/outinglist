@@ -76,7 +76,7 @@ export function EventCard({ event, onLike, liked = false, compact = false, featu
   const [showAddToList, setShowAddToList] = useState(false)
   const primaryCat = event.categories?.[0]
   const IconComponent = primaryCat?.slug ? CATEGORY_ICONS[primaryCat.slug] : null
-  const catColor = primaryCat?.slug ? CATEGORY_COLORS[primaryCat.slug] : '#6366F1'
+  const catColor = primaryCat?.slug ? CATEGORY_COLORS[primaryCat.slug] : '#5B5BD6'
   const catBg = getCategoryBg(primaryCat?.slug)
   const imageUrl = event.image_url || null  // No placeholder — only show image if one exists
   const dateLabel = formatEventDate(event.start_at)
@@ -160,7 +160,7 @@ export function EventCard({ event, onLike, liked = false, compact = false, featu
             className={cn(
               'absolute top-5 right-5 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-150',
               'backdrop-blur-sm',
-              isLiked ? 'bg-[#6366F1] text-white' : 'bg-black/40 text-white/70 hover:text-white'
+              isLiked ? 'bg-[#5B5BD6] text-white' : 'bg-black/40 text-white/70 hover:text-white'
             )}
             aria-label="Like event"
           >
@@ -215,7 +215,7 @@ export function EventCard({ event, onLike, liked = false, compact = false, featu
               className={cn(
                 'absolute top-3 right-3 w-8 h-8 flex items-center justify-center transition-all duration-150 rounded-[6px]',
                 'backdrop-blur-sm',
-                isLiked ? 'bg-[#6366F1] text-white' : 'bg-black/30 text-white/70 hover:text-white opacity-0 group-hover:opacity-100'
+                isLiked ? 'bg-[#5B5BD6] text-white' : 'bg-black/30 text-white/70 hover:text-white opacity-0 group-hover:opacity-100'
               )}
               aria-label="Like event"
             >
@@ -250,7 +250,7 @@ export function EventCard({ event, onLike, liked = false, compact = false, featu
                   onClick={handleLike}
                   className={cn(
                     'w-7 h-7 flex items-center justify-center transition-all duration-150 rounded-[6px]',
-                    isLiked ? 'text-[#6366F1]' : 'text-[#D1D5DB] hover:text-[#6366F1] opacity-0 group-hover:opacity-100'
+                    isLiked ? 'text-[#5B5BD6]' : 'text-[#D1D5DB] hover:text-[#5B5BD6] opacity-0 group-hover:opacity-100'
                   )}
                   aria-label="Like event"
                 >
@@ -276,7 +276,7 @@ export function EventCard({ event, onLike, liked = false, compact = false, featu
           )}
 
           {/* Title */}
-          <h3 className="font-display font-bold text-[#1A1A1F] leading-tight mb-2 transition-colors group-hover:text-[#6366F1]"
+          <h3 className="font-display font-bold text-[#1A1A1F] leading-tight mb-2 transition-colors group-hover:text-[#5B5BD6]"
             style={{ fontSize: compact ? '1rem' : '1.1rem', lineHeight: 1.25 }}>
             {event.title}
           </h3>
@@ -292,7 +292,7 @@ export function EventCard({ event, onLike, liked = false, compact = false, featu
 
           {/* Price */}
           {event.is_free !== 1 && priceLabel && (
-            <div className="mt-1.5 text-xs font-semibold text-[#6366F1]">
+            <div className="mt-1.5 text-xs font-semibold text-[#5B5BD6]">
               {priceLabel}
             </div>
           )}

@@ -27,7 +27,7 @@ export function SignUp() {
     <Layout>
       <div className="max-w-md mx-auto pt-8">
         <div className="text-center mb-8">
-          <div className="w-12 h-12 bg-[#6366F1] rounded-2xl flex items-center justify-center text-white font-bold text-lg mx-auto mb-4 font-display">
+          <div className="w-12 h-12 bg-[#5B5BD6] rounded-2xl flex items-center justify-center text-white font-bold text-lg mx-auto mb-4 font-display">
             OL
           </div>
           <h1 className="font-display text-2xl font-bold text-[#1A1A1A]">Join OutingList</h1>
@@ -44,7 +44,7 @@ export function SignUp() {
                 onChange={e => setName(e.target.value)}
                 placeholder="Your name"
                 required
-                className="w-full px-3 py-2.5 rounded-xl border border-[#E8E8E4] text-sm focus:outline-none focus:ring-2 focus:ring-[#6366F1] focus:border-transparent"
+                className="w-full px-3 py-2.5 rounded-xl border border-[#E8E8E4] text-sm focus:outline-none focus:ring-2 focus:ring-[#5B5BD6] focus:border-transparent"
               />
             </div>
             <div>
@@ -55,7 +55,7 @@ export function SignUp() {
                 onChange={e => setEmail(e.target.value)}
                 placeholder="you@example.com"
                 required
-                className="w-full px-3 py-2.5 rounded-xl border border-[#E8E8E4] text-sm focus:outline-none focus:ring-2 focus:ring-[#6366F1] focus:border-transparent"
+                className="w-full px-3 py-2.5 rounded-xl border border-[#E8E8E4] text-sm focus:outline-none focus:ring-2 focus:ring-[#5B5BD6] focus:border-transparent"
               />
             </div>
             <div>
@@ -66,7 +66,7 @@ export function SignUp() {
                 onChange={e => setPassword(e.target.value)}
                 placeholder="••••••••"
                 required
-                className="w-full px-3 py-2.5 rounded-xl border border-[#E8E8E4] text-sm focus:outline-none focus:ring-2 focus:ring-[#6366F1] focus:border-transparent"
+                className="w-full px-3 py-2.5 rounded-xl border border-[#E8E8E4] text-sm focus:outline-none focus:ring-2 focus:ring-[#5B5BD6] focus:border-transparent"
               />
             </div>
             <Button type="submit" variant="primary" size="lg" loading={loading} className="w-full">
@@ -77,7 +77,7 @@ export function SignUp() {
 
         <p className="text-center mt-4 text-sm text-[#94A3B8]">
           Already have an account?{' '}
-          <Link to="/sign-in" className="text-[#6366F1] font-medium hover:underline">Sign in</Link>
+          <Link to="/sign-in" className="text-[#5B5BD6] font-medium hover:underline">Sign in</Link>
         </p>
       </div>
     </Layout>

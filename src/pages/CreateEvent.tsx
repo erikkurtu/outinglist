@@ -99,7 +99,7 @@ export function CreateEvent() {
     }
   }
 
-  const inputClass = "w-full px-3 py-2.5 rounded-xl border border-[#E8E8E4] text-sm focus:outline-none focus:ring-2 focus:ring-[#6366F1] focus:border-transparent bg-white"
+  const inputClass = "w-full px-3 py-2.5 rounded-xl border border-[#E8E8E4] text-sm focus:outline-none focus:ring-2 focus:ring-[#5B5BD6] focus:border-transparent bg-white"
 
   return (
     <Layout>
@@ -189,7 +189,7 @@ export function CreateEvent() {
                       ? 'text-white border-transparent'
                       : 'bg-[#F8F8F6] border-[#E8E8E4] text-[#64748B] hover:border-[#94A3B8]'
                   }`}
-                  style={form.category_ids.includes(cat.id) ? { backgroundColor: cat.color || '#6366F1' } : {}}
+                  style={form.category_ids.includes(cat.id) ? { backgroundColor: cat.color || '#5B5BD6' } : {}}
                 >
                   {cat.icon} {cat.name}
                 </button>
@@ -200,7 +200,7 @@ export function CreateEvent() {
           {/* Pricing */}
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <input type="checkbox" id="is_free" checked={form.is_free} onChange={e => update('is_free', e.target.checked)} className="w-4 h-4 accent-[#6366F1]" />
+              <input type="checkbox" id="is_free" checked={form.is_free} onChange={e => update('is_free', e.target.checked)} className="w-4 h-4 accent-[#5B5BD6]" />
               <label htmlFor="is_free" className="text-sm font-medium text-[#1A1A1A]">This event is free</label>
             </div>
             {!form.is_free && (
