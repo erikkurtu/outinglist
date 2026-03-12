@@ -9,7 +9,7 @@ interface BadgeProps {
   onClick?: () => void
 }
 
-export function Badge({ label, color = '#FF6B35', icon, className, onClick }: BadgeProps) {
+export function Badge({ label, color = '#7C3AED', icon, className, onClick }: BadgeProps) {
   const bg = color + '18' // ~10% opacity
   return (
     <span

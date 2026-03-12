@@ -15,13 +15,13 @@ function ListCard({ list }: { list: List }) {
       className="group block bg-white rounded-[16px] overflow-hidden border border-[#E8E8E4] hover:border-transparent shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-all duration-200 hover:-translate-y-0.5"
     >
       {/* Cover / Preview Grid */}
-      <div className="relative h-40 bg-gradient-to-br from-[#FF6B35] to-[#e55a22] overflow-hidden">
+      <div className="relative h-40 bg-gradient-to-br from-[#7C3AED] to-[#6D28D9] overflow-hidden">
         {list.cover_image_url ? (
           <img src={list.cover_image_url} alt={list.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
         ) : list.preview_events && list.preview_events.length > 0 ? (
           <div className={`grid h-full ${list.preview_events.length >= 4 ? 'grid-cols-2 grid-rows-2' : list.preview_events.length >= 2 ? 'grid-cols-2' : 'grid-cols-1'} gap-0.5`}>
             {list.preview_events.slice(0, 4).map((e, i) => (
-              <div key={i} className="relative overflow-hidden bg-gradient-to-br from-orange-400 to-pink-500">
+              <div key={i} className="relative overflow-hidden bg-gradient-to-br from-violet-400 to-purple-500">
                 {e.image_url && (
                   <img src={e.image_url} alt="" className="w-full h-full object-cover opacity-80" />
                 )}
@@ -29,20 +29,20 @@ function ListCard({ list }: { list: List }) {
             ))}
           </div>
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-5xl">📋</div>
+          <div className="w-full h-full flex items-center justify-center"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="1.5"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
         )}
 
         {/* Visibility badge */}
         <div className="absolute top-3 right-3">
           <span className={`text-xs font-semibold px-2 py-1 rounded-full ${isPublic ? 'bg-[#00D4AA] text-white' : 'bg-black/50 text-white'}`}>
-            {isPublic ? '🌐 Public' : '🔒 Private'}
+            {isPublic ? 'Public' : 'Private'}
           </span>
         </div>
       </div>
 
       {/* Content */}
       <div className="p-4">
-        <h3 className="font-display font-semibold text-[#1A1A1A] mb-1 group-hover:text-[#FF6B35] transition-colors line-clamp-1">
+        <h3 className="font-display font-semibold text-[#1A1A1A] mb-1 group-hover:text-[#7C3AED] transition-colors line-clamp-1">
           {list.title}
         </h3>
         {list.description && (
@@ -58,7 +58,7 @@ function ListCard({ list }: { list: List }) {
           </span>
           {(list.like_count ?? 0) > 0 && (
             <span className="flex items-center gap-1">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="#FF6B35" stroke="#FF6B35" strokeWidth="2">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#7C3AED" stroke="#7C3AED" strokeWidth="2">
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
               </svg>
               {list.like_count}
@@ -88,7 +88,7 @@ export function Lists() {
     return (
       <Layout>
         <div className="text-center py-20">
-          <div className="text-6xl mb-4">📋</div>
+          <div className="w-12 h-12 mx-auto mb-4 text-[#C4BEB4]"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
           <h2 className="font-display text-2xl font-bold text-[#1A1A1A] mb-2">Your Lists</h2>
           <p className="text-[#94A3B8] mb-6">Sign in to create and manage your event lists.</p>
           <Link to="/sign-in">
@@ -119,7 +119,7 @@ export function Lists() {
 
       {loading ? (
         <div className="flex justify-center py-16">
-          <div className="animate-spin w-6 h-6 border-2 border-[#FF6B35] border-t-transparent rounded-full" />
+          <div className="animate-spin w-6 h-6 border-2 border-[#7C3AED] border-t-transparent rounded-full" />
         </div>
       ) : lists.length === 0 ? (
         <div className="text-center py-20 bg-white rounded-2xl border border-[#E8E8E4] border-dashed">
@@ -137,7 +137,7 @@ export function Lists() {
           {publicLists.length > 0 && (
             <section>
               <h2 className="font-display text-lg font-semibold text-[#1A1A1A] mb-4 flex items-center gap-2">
-                <span>🌐</span> Public Lists
+                Public Lists
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {publicLists.map(list => <ListCard key={list.id} list={list} />)}
@@ -147,7 +147,7 @@ export function Lists() {
           {privateLists.length > 0 && (
             <section>
               <h2 className="font-display text-lg font-semibold text-[#1A1A1A] mb-4 flex items-center gap-2">
-                <span>🔒</span> Private Lists
+                Private Lists
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {privateLists.map(list => <ListCard key={list.id} list={list} />)}

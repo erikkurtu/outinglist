@@ -22,7 +22,7 @@ export function CreateList() {
     return (
       <Layout>
         <div className="text-center py-20">
-          <div className="text-6xl mb-4">🔒</div>
+          <div className="w-12 h-12 mx-auto mb-4 text-[#C4BEB4]"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 1 1 8 0v4"/></svg></div>
           <h2 className="font-display text-2xl font-bold mb-2">Sign in to create lists</h2>
           <p className="text-[#94A3B8] mb-6">You need an account to create and manage lists.</p>
           <Link to="/sign-in"><Button variant="primary">Sign In</Button></Link>
@@ -81,14 +81,14 @@ export function CreateList() {
           {/* Title */}
           <div>
             <label className="block text-sm font-semibold text-[#1A1A1A] mb-1.5">
-              List Name <span className="text-[#FF6B35]">*</span>
+              List Name <span className="text-[#7C3AED]">*</span>
             </label>
             <input
               type="text"
               value={title}
               onChange={e => { setTitle(e.target.value); setErrors(prev => ({ ...prev, title: '' })) }}
               placeholder="e.g. Best Date Night Spots, Family Weekend Picks…"
-              className={`w-full px-4 py-3 rounded-[12px] border text-[#1A1A1A] placeholder:text-[#CBD5E1] focus:outline-none focus:ring-2 focus:ring-[#FF6B35] transition ${errors.title ? 'border-red-400' : 'border-[#E8E8E4]'}`}
+              className={`w-full px-4 py-3 rounded-[12px] border text-[#1A1A1A] placeholder:text-[#CBD5E1] focus:outline-none focus:ring-2 focus:ring-[#7C3AED] transition ${errors.title ? 'border-red-400' : 'border-[#E8E8E4]'}`}
             />
             {errors.title && <p className="text-red-500 text-sm mt-1">{errors.title}</p>}
           </div>
@@ -101,7 +101,7 @@ export function CreateList() {
               onChange={e => setDescription(e.target.value)}
               placeholder="What's this list about? Give people a reason to follow it."
               rows={3}
-              className="w-full px-4 py-3 rounded-[12px] border border-[#E8E8E4] text-[#1A1A1A] placeholder:text-[#CBD5E1] focus:outline-none focus:ring-2 focus:ring-[#FF6B35] transition resize-none"
+              className="w-full px-4 py-3 rounded-[12px] border border-[#E8E8E4] text-[#1A1A1A] placeholder:text-[#CBD5E1] focus:outline-none focus:ring-2 focus:ring-[#7C3AED] transition resize-none"
             />
           </div>
 
@@ -113,7 +113,7 @@ export function CreateList() {
               value={coverImageUrl}
               onChange={e => setCoverImageUrl(e.target.value)}
               placeholder="https://..."
-              className="w-full px-4 py-3 rounded-[12px] border border-[#E8E8E4] text-[#1A1A1A] placeholder:text-[#CBD5E1] focus:outline-none focus:ring-2 focus:ring-[#FF6B35] transition"
+              className="w-full px-4 py-3 rounded-[12px] border border-[#E8E8E4] text-[#1A1A1A] placeholder:text-[#CBD5E1] focus:outline-none focus:ring-2 focus:ring-[#7C3AED] transition"
             />
             {coverImageUrl && (
               <div className="mt-3 rounded-[12px] overflow-hidden h-40 bg-[#F8F8F6]">
@@ -132,12 +132,12 @@ export function CreateList() {
             <button
               type="button"
               onClick={() => setIsPublic(!isPublic)}
-              className={`relative flex-shrink-0 w-12 h-6 rounded-full transition-all duration-200 ${isPublic ? 'bg-[#FF6B35]' : 'bg-[#CBD5E1]'}`}
+              className={`relative flex-shrink-0 w-12 h-6 rounded-full transition-all duration-200 ${isPublic ? 'bg-[#7C3AED]' : 'bg-[#CBD5E1]'}`}
             >
               <span className={`absolute top-1 w-4 h-4 bg-white rounded-full shadow transition-all duration-200 ${isPublic ? 'left-7' : 'left-1'}`} />
             </button>
             <div>
-              <p className="font-semibold text-[#1A1A1A] text-sm">{isPublic ? '🌐 Public List' : '🔒 Private List'}</p>
+              <p className="font-semibold text-[#1A1A1A] text-sm">{isPublic ? 'Public List' : 'Private List'}</p>
               <p className="text-[#94A3B8] text-sm mt-0.5">
                 {isPublic
                   ? 'Anyone can discover and share your list.'

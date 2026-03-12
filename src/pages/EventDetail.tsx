@@ -12,7 +12,7 @@ import type { Event } from '@/components/EventCard'
 
 // Gradient palette per category color
 function getGradient(color?: string): string {
-  const hex = color || '#FF6B35'
+  const hex = color || '#7C3AED'
   return `linear-gradient(135deg, ${hex}cc 0%, ${hex}55 50%, #1A1A2E 100%)`
 }
 
@@ -87,7 +87,7 @@ export function EventDetail() {
       <div className="text-center py-20">
         <div className="text-5xl mb-4">😕</div>
         <h2 className="font-display text-xl font-bold mb-2">Event not found</h2>
-        <Link to="/browse" className="text-[#FF6B35] hover:underline">← Back to browse</Link>
+        <Link to="/browse" className="text-[#7C3AED] hover:underline">← Back to browse</Link>
       </div>
     </Layout>
   )
@@ -171,7 +171,7 @@ export function EventDetail() {
                     href={`https://maps.google.com/?q=${encodeURIComponent(event.location_address)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs text-[#FF6B35] hover:underline mt-0.5 block"
+                    className="text-xs text-[#7C3AED] hover:underline mt-0.5 block"
                   >
                     {event.location_address}
                   </a>
@@ -185,7 +185,7 @@ export function EventDetail() {
               <span className="text-xl mt-0.5">💰</span>
               <div>
                 <div className="text-xs text-[#94A3B8] font-medium mb-0.5">PRICE</div>
-                <div className="font-semibold text-[#FF6B35] text-sm">{formatPrice(event.price_min, event.price_max)}</div>
+                <div className="font-semibold text-[#7C3AED] text-sm">{formatPrice(event.price_min, event.price_max)}</div>
               </div>
             </div>
           )}
@@ -246,14 +246,14 @@ export function EventDetail() {
           {/* Add to List button */}
           <button
             onClick={() => setShowAddToList(true)}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all border bg-white text-[#64748B] border-[#E8E8E4] hover:border-[#FF6B35] hover:text-[#FF6B35]"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all border bg-white text-[#64748B] border-[#E8E8E4] hover:border-[#7C3AED] hover:text-[#7C3AED]"
           >
             <span>📋</span>
             <span>Add to List</span>
           </button>
 
           {!user && (
-            <Link to="/sign-in" className="text-sm text-[#94A3B8] hover:text-[#FF6B35] transition-colors">
+            <Link to="/sign-in" className="text-sm text-[#94A3B8] hover:text-[#7C3AED] transition-colors">
               Sign in to like events
             </Link>
           )}

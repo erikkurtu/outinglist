@@ -59,7 +59,7 @@ export function AddToListModal({ eventId, onClose }: AddToListModalProps) {
           <p className="text-[#94A3B8] text-sm mb-4">Create lists and save events to revisit later.</p>
           <button
             onClick={() => navigate('/sign-in')}
-            className="w-full bg-[#FF6B35] text-white font-semibold py-2.5 rounded-xl hover:bg-[#e55a22] transition"
+            className="w-full bg-[#7C3AED] text-white font-semibold py-2.5 rounded-xl hover:bg-[#6D28D9] transition"
           >
             Sign In
           </button>
@@ -78,14 +78,14 @@ export function AddToListModal({ eventId, onClose }: AddToListModalProps) {
 
         {loading ? (
           <div className="flex justify-center py-6">
-            <div className="animate-spin w-5 h-5 border-2 border-[#FF6B35] border-t-transparent rounded-full" />
+            <div className="animate-spin w-5 h-5 border-2 border-[#7C3AED] border-t-transparent rounded-full" />
           </div>
         ) : lists.length === 0 ? (
           <div className="text-center py-4">
             <p className="text-[#94A3B8] text-sm mb-4">You don't have any lists yet.</p>
             <button
               onClick={() => { onClose(); navigate('/lists/new') }}
-              className="bg-[#FF6B35] text-white font-semibold py-2 px-4 rounded-xl text-sm hover:bg-[#e55a22] transition"
+              className="bg-[#7C3AED] text-white font-semibold py-2 px-4 rounded-xl text-sm hover:bg-[#6D28D9] transition"
             >
               Create a List
             </button>
@@ -103,7 +103,7 @@ export function AddToListModal({ eventId, onClose }: AddToListModalProps) {
                   className={`w-full flex items-center justify-between p-3 rounded-xl border text-left transition-all ${
                     isAdded
                       ? 'bg-[#E6FAF7] border-[#00D4AA] text-[#00D4AA]'
-                      : 'bg-white border-[#E8E8E4] hover:border-[#FF6B35] hover:bg-[#FFF4F0]'
+                      : 'bg-white border-[#E8E8E4] hover:border-[#7C3AED] hover:bg-[#F5F0FF]'
                   }`}
                 >
                   <div className="flex items-center gap-2">
@@ -125,7 +125,7 @@ export function AddToListModal({ eventId, onClose }: AddToListModalProps) {
         <div className="mt-4 pt-4 border-t border-[#E8E8E4]">
           <button
             onClick={() => { onClose(); navigate('/lists/new') }}
-            className="w-full text-[#FF6B35] font-semibold text-sm py-2 rounded-xl border border-[#FF6B35] hover:bg-[#FFF4F0] transition"
+            className="w-full text-[#7C3AED] font-semibold text-sm py-2 rounded-xl border border-[#7C3AED] hover:bg-[#F5F0FF] transition"
           >
             + Create New List
           </button>

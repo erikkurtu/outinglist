@@ -83,7 +83,7 @@ export function ListDetail() {
     return (
       <Layout>
         <div className="flex justify-center py-20">
-          <div className="animate-spin w-6 h-6 border-2 border-[#FF6B35] border-t-transparent rounded-full" />
+          <div className="animate-spin w-6 h-6 border-2 border-[#7C3AED] border-t-transparent rounded-full" />
         </div>
       </Layout>
     )
@@ -124,8 +124,8 @@ export function ListDetail() {
             <img src={list.cover_image_url} alt={list.title} className="w-full h-full object-cover" />
           </div>
         ) : (
-          <div className="h-40 bg-gradient-to-br from-[#FF6B35] to-[#e55a22] flex items-center justify-center text-6xl">
-            📋
+          <div className="h-40 bg-gradient-to-br from-[#7C3AED] to-[#6D28D9] flex items-center justify-center">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="1.5"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
           </div>
         )}
 
@@ -134,7 +134,7 @@ export function ListDetail() {
             <div className="flex-1">
               {/* Visibility */}
               <span className={`inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full mb-3 ${list.is_public ? 'bg-[#E6FAF7] text-[#00D4AA]' : 'bg-[#F1F5F9] text-[#64748B]'}`}>
-                {list.is_public ? '🌐 Public' : '🔒 Private'}
+                {list.is_public ? 'Public' : 'Private'}
               </span>
 
               <h1 className="font-display text-3xl font-bold text-[#1A1A1A] mb-2">{list.title}</h1>
@@ -145,12 +145,12 @@ export function ListDetail() {
 
               {/* Curator info */}
               <div className="flex items-center gap-2 text-sm text-[#94A3B8]">
-                <div className="w-6 h-6 rounded-full bg-[#FF6B35] flex items-center justify-center text-white text-xs font-bold">
+                <div className="w-6 h-6 rounded-full bg-[#7C3AED] flex items-center justify-center text-white text-xs font-bold">
                   {curatorName[0].toUpperCase()}
                 </div>
                 <span>by <span className="text-[#1A1A1A] font-medium">{curatorName}</span></span>
                 {isCurator && (
-                  <span className="inline-flex items-center gap-1 bg-[#FFF4F0] text-[#FF6B35] text-xs font-semibold px-2 py-0.5 rounded-full">
+                  <span className="inline-flex items-center gap-1 bg-[#F5F0FF] text-[#7C3AED] text-xs font-semibold px-2 py-0.5 rounded-full">
                     ✓ Curator
                   </span>
                 )}
@@ -164,8 +164,8 @@ export function ListDetail() {
                 onClick={handleLike}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-semibold transition-all ${
                   liked
-                    ? 'bg-[#FF6B35] border-[#FF6B35] text-white'
-                    : 'bg-white border-[#E8E8E4] text-[#64748B] hover:border-[#FF6B35] hover:text-[#FF6B35]'
+                    ? 'bg-[#7C3AED] border-[#7C3AED] text-white'
+                    : 'bg-white border-[#E8E8E4] text-[#64748B] hover:border-[#7C3AED] hover:text-[#7C3AED]'
                 }`}
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill={liked ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2">
@@ -230,7 +230,7 @@ export function ListDetail() {
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-display text-xl font-semibold text-[#1A1A1A]">Events in this list</h2>
             {isOwner && (
-              <Link to="/browse" className="text-sm text-[#FF6B35] font-medium hover:underline">
+              <Link to="/browse" className="text-sm text-[#7C3AED] font-medium hover:underline">
                 + Add more events
               </Link>
             )}

@@ -30,7 +30,7 @@ export function SignIn() {
     <Layout>
       <div className="max-w-md mx-auto pt-8">
         <div className="text-center mb-8">
-          <div className="w-12 h-12 bg-[#FF6B35] rounded-2xl flex items-center justify-center text-white font-bold text-lg mx-auto mb-4 font-display">
+          <div className="w-12 h-12 bg-[#7C3AED] rounded-2xl flex items-center justify-center text-white font-bold text-lg mx-auto mb-4 font-display">
             OL
           </div>
           <h1 className="font-display text-2xl font-bold text-[#1A1A1A]">Welcome back</h1>
@@ -52,7 +52,7 @@ export function SignIn() {
                 onChange={e => setEmail(e.target.value)}
                 placeholder="you@example.com"
                 required
-                className="w-full px-3 py-2.5 rounded-xl border border-[#E8E8E4] text-sm focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent"
+                className="w-full px-3 py-2.5 rounded-xl border border-[#E8E8E4] text-sm focus:outline-none focus:ring-2 focus:ring-[#7C3AED] focus:border-transparent"
               />
             </div>
             <div>
@@ -63,7 +63,7 @@ export function SignIn() {
                 onChange={e => setPassword(e.target.value)}
                 placeholder="••••••••"
                 required
-                className="w-full px-3 py-2.5 rounded-xl border border-[#E8E8E4] text-sm focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent"
+                className="w-full px-3 py-2.5 rounded-xl border border-[#E8E8E4] text-sm focus:outline-none focus:ring-2 focus:ring-[#7C3AED] focus:border-transparent"
               />
             </div>
             <Button type="submit" variant="primary" size="lg" loading={loading} className="w-full">
@@ -74,7 +74,7 @@ export function SignIn() {
 
         <p className="text-center mt-4 text-sm text-[#94A3B8]">
           Don't have an account?{' '}
-          <Link to="/sign-up" className="text-[#FF6B35] font-medium hover:underline">Sign up</Link>
+          <Link to="/sign-up" className="text-[#7C3AED] font-medium hover:underline">Sign up</Link>
         </p>
       </div>
     </Layout>
