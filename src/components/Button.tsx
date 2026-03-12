@@ -1,29 +1,28 @@
 import React from 'react'
 import { cn } from '@/lib/utils'
 
-type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'accent'
-type ButtonSize = 'sm' | 'md' | 'lg'
-
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: ButtonVariant
-  size?: ButtonSize
+  variant?: 'primary' | 'secondary' | 'ghost' | 'danger' | 'accent' | 'outline'
+  size?: 'sm' | 'md' | 'lg'
   loading?: boolean
   icon?: React.ReactNode
-  iconPosition?: 'left' | 'right'
+  children?: React.ReactNode
+  className?: string
 }
 
-const variantStyles: Record<ButtonVariant, string> = {
-  primary: 'bg-[#FF6B35] text-white hover:bg-[#E55A28] active:bg-[#D04E22] shadow-sm',
-  secondary: 'bg-white text-[#1A1A1A] border border-[#E8E8E4] hover:bg-[#F5F5F2] active:bg-[#EDEDEA]',
-  ghost: 'bg-transparent text-[#1A1A1A] hover:bg-[#F5F5F2] active:bg-[#EDEDEA]',
-  danger: 'bg-[#EF4444] text-white hover:bg-[#DC2626] active:bg-[#B91C1C]',
-  accent: 'bg-[#00D4AA] text-white hover:bg-[#00B894] active:bg-[#009E7E]',
+const variants = {
+  primary: 'bg-[#C2582A] text-white hover:bg-[#A8461F] border border-transparent',
+  secondary: 'bg-[#1C1C1E] text-white hover:bg-[#2D2D2D] border border-transparent',
+  ghost: 'bg-transparent text-[#1C1C1E] hover:bg-[#EDE7DC] border border-transparent',
+  danger: 'bg-red-600 text-white hover:bg-red-700 border border-transparent',
+  accent: 'bg-[#F5F0E8] text-[#C2582A] hover:bg-[#EDE7DC] border border-transparent',
+  outline: 'bg-transparent text-[#1C1C1E] border border-[#1C1C1E] hover:bg-[#1C1C1E] hover:text-white',
 }
 
-const sizeStyles: Record<ButtonSize, string> = {
-  sm: 'px-3 py-1.5 text-sm gap-1.5',
-  md: 'px-4 py-2 text-sm gap-2',
-  lg: 'px-6 py-3 text-base gap-2',
+const sizes = {
+  sm: 'text-xs px-3 py-1.5 h-8',
+  md: 'text-sm px-4 py-2 h-9',
+  lg: 'text-sm px-6 py-3 h-11',
 }
 
 export function Button({
@@ -31,33 +30,29 @@ export function Button({
   size = 'md',
   loading = false,
   icon,
-  iconPosition = 'left',
-  className,
   children,
+  className,
   disabled,
   ...props
 }: ButtonProps) {
   return (
     <button
+      {...props}
+      disabled={disabled || loading}
       className={cn(
-        'inline-flex items-center justify-center font-medium rounded-[10px] transition-all duration-150 cursor-pointer',
+        'inline-flex items-center justify-center gap-2 font-semibold font-sans transition-colors',
         'disabled:opacity-50 disabled:cursor-not-allowed',
-        variantStyles[variant],
-        sizeStyles[size],
+        variants[variant],
+        sizes[size],
         className
       )}
-      disabled={disabled || loading}
-      {...props}
     >
-      {loading && (
-        <svg className="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
-          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+      {loading ? (
+        <svg className="animate-spin" width="14" height="14" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" strokeDasharray="60" strokeDashoffset="20" />
         </svg>
-      )}
-      {!loading && icon && iconPosition === 'left' && icon}
+      ) : icon}
       {children}
-      {!loading && icon && iconPosition === 'right' && icon}
     </button>
   )
 }

@@ -211,3 +211,33 @@ _Completed: 2026-03-11_
 - No image uploads yet (gradient fallbacks used)
 - Lists and Profiles are stub pages
 - Clerk real auth not wired (mock works fine)
+
+---
+
+## Design Revolution (March 12, 2026)
+
+### Status: ✅ DONE
+
+### What Changed
+
+**Visual Identity Overhaul:**
+- Font: Replaced Space Grotesk with **Playfair Display** (editorial serif with character) + Inter for body
+- Palette: Charcoal (#1C1C1E) + Cream (#F5F0E8) + **Terracotta (#C2582A)** — ditched the generic coral
+- 15 custom SVG category icons (music note, fork+knife, palette, mountains, etc.) — NO EMOJI anywhere
+
+**Component Redesigns:**
+- `EventCard`: Image-dominant, zero borders, category dot + text labels, hover scale
+- `Nav`: Dark (#1C1C1E) wordmark-only, transparent over hero, terracotta CTA button
+- `Layout`: Updated for fullWidth/noPad support, dark footer with wordmark
+- `Button`: New variants matching new palette
+- Added `CategoryIcons.tsx` with 15 SVG icons + color map
+
+**Page Redesigns:**
+- **Homepage**: Dark hero section with real Picsum photos, "Your city. *This weekend.*" headline, mixed editorial grid (1 large featured + smaller cards), dark category matrix, terracotta CTA banner
+- **Browse**: "What's on." header, large featured card hero + 3-col card grid, text-link filters, minimal search bar, clean pagination
+
+**Data:**
+- Updated all 55 events in DB with Picsum photo URLs (seed = event ID)
+
+**Server:**
+- Added static file serving to Hono server — both API + frontend served from port 3001

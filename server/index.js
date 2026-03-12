@@ -1,5 +1,6 @@
 import { Hono } from 'hono'
 import { serve } from '@hono/node-server'
+import { serveStatic } from '@hono/node-server/serve-static'
 import { cors } from 'hono/cors'
 import Database from 'better-sqlite3'
 import { fileURLToPath } from 'url'
@@ -490,6 +491,16 @@ app.put('/api/users/:id/profile', async (c) => {
   ).run(id, body.display_name || null, body.bio || null, now)
 
   return c.json(db.prepare('SELECT * FROM user_profiles WHERE user_id = ?').get(id))
+})
+
+// Serve static files from dist (production build)
+const distPath = join(__dirname, '../dist')
+app.use('/assets/*', serveStatic({ root: distPath }))
+// SPA fallback for all non-API routes
+app.get('*', async (c) => {
+  const { readFile } = await import('fs/promises')
+  const html = await readFile(join(distPath, 'index.html'), 'utf-8')
+  return c.html(html)
 })
 
 const port = 3001

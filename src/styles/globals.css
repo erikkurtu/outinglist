@@ -1,50 +1,47 @@
+/* Google Fonts — MUST be first */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Inter:wght@400;500;600&display=swap');
+
 @import "tailwindcss";
 
 @theme {
-  /* Brand Colors */
-  --color-brand-primary: #FF6B35;
-  --color-brand-primary-hover: #E55A28;
-  --color-brand-dark: #1A1A2E;
-  --color-brand-accent: #00D4AA;
-  --color-brand-accent-hover: #00B894;
-  --color-brand-bg: #FAFAF8;
-  --color-brand-surface: #FFFFFF;
-  --color-brand-text: #1A1A1A;
-  --color-brand-muted: #94A3B8;
-  --color-brand-border: #E8E8E4;
-  --color-brand-error: #EF4444;
-  --color-brand-warning: #F59E0B;
-  --color-brand-success: #10B981;
+  /* === NEW PALETTE === */
+  --color-brand-dark: #1C1C1E;
+  --color-brand-bg: #F5F0E8;
+  --color-brand-surface: #FDFAF5;
+  --color-brand-primary: #C2582A;
+  --color-brand-primary-hover: #A8461F;
+  --color-brand-text: #1C1C1E;
+  --color-brand-muted: #8A8480;
+  --color-brand-border: #E2DDD6;
+  --color-brand-sand: #DDD5C8;
+  --color-brand-ink: #2D2B28;
 
   /* Category Colors */
-  --color-cat-music: #8B5CF6;
-  --color-cat-food: #F59E0B;
-  --color-cat-arts: #EC4899;
-  --color-cat-sports: #10B981;
-  --color-cat-nightlife: #6366F1;
-  --color-cat-family: #F97316;
-  --color-cat-outdoor: #22C55E;
-  --color-cat-tech: #3B82F6;
-  --color-cat-community: #14B8A6;
-  --color-cat-workshop: #A855F7;
+  --color-cat-music: #5B35C8;
+  --color-cat-food: #C28A2A;
+  --color-cat-arts: #B83E6A;
+  --color-cat-sports: #2A7A4A;
+  --color-cat-nightlife: #3D3A8C;
+  --color-cat-family: #C2582A;
+  --color-cat-outdoor: #3A7A3A;
+  --color-cat-tech: #1A5FAD;
+  --color-cat-community: #1A8A7A;
+  --color-cat-workshop: #7A35A8;
 
   /* Typography */
-  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
   --font-body: 'Inter', system-ui, sans-serif;
 
-  /* Spacing / Radii */
-  --radius-card: 16px;
-  --radius-button: 10px;
-  --radius-badge: 6px;
+  /* Radii */
+  --radius-card: 4px;
+  --radius-button: 4px;
+  --radius-badge: 2px;
 
   /* Shadows */
-  --shadow-card: 0 2px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
-  --shadow-card-hover: 0 8px 30px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
-  --shadow-modal: 0 20px 60px rgba(0,0,0,0.15);
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.06);
+  --shadow-card-hover: 0 8px 40px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.1);
+  --shadow-modal: 0 20px 60px rgba(0,0,0,0.25);
 }
-
-/* Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
 
 * {
   box-sizing: border-box;
@@ -65,8 +62,9 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.15;
   margin: 0;
+  letter-spacing: -0.02em;
 }
 
 a {
@@ -74,7 +72,6 @@ a {
   text-decoration: none;
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -82,11 +79,10 @@ a {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-brand-border);
-  border-radius: 3px;
+  background: var(--color-brand-sand);
+  border-radius: 2px;
 }
 
-/* Focus rings */
 :focus-visible {
   outline: 2px solid var(--color-brand-primary);
   outline-offset: 2px;

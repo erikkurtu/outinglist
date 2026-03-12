@@ -6,32 +6,31 @@ interface LayoutProps {
   children: React.ReactNode
   className?: string
   fullWidth?: boolean
+  noPad?: boolean
 }
 
-export function Layout({ children, className, fullWidth = false }: LayoutProps) {
+export function Layout({ children, className, fullWidth = false, noPad = false }: LayoutProps) {
   return (
-    <div className="min-h-screen bg-[#FAFAF8] flex flex-col">
+    <div className="min-h-screen bg-[#F5F0E8] flex flex-col">
       <Nav />
       <main className={cn(
         'flex-1',
-        !fullWidth && 'max-w-6xl mx-auto w-full px-4 py-6',
-        'pb-20 md:pb-6', // mobile nav clearance
+        !fullWidth && !noPad && 'max-w-6xl mx-auto w-full px-6 py-8',
+        'pb-20 md:pb-0', // mobile nav clearance
         className
       )}>
         {children}
       </main>
-      <footer className="hidden md:block border-t border-[#E8E8E4] py-8">
-        <div className="max-w-6xl mx-auto px-4 flex items-center justify-between">
-          <div className="flex items-center gap-2 font-display font-bold text-[#1A1A1A]">
-            <span className="w-6 h-6 bg-[#FF6B35] rounded flex items-center justify-center text-white text-xs font-bold">
-              OL
-            </span>
+      <footer className="hidden md:block bg-[#1C1C1E] border-t border-white/10 py-10">
+        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
+          <div className="font-display font-bold text-white text-lg">
             OutingList
+            <span className="ml-1.5 text-[10px] font-sans font-semibold tracking-widest text-[#C2582A] uppercase align-middle">ATL</span>
           </div>
-          <p className="text-xs text-[#94A3B8]">
+          <p className="text-xs text-white/30">
             Your friend who always knows what's happening in Atlanta.
           </p>
-          <div className="text-xs text-[#94A3B8]">
+          <div className="text-xs text-white/30">
             © 2026 OutingList
           </div>
         </div>
